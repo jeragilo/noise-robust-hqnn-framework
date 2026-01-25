@@ -1,3 +1,7 @@
+📦 **Stable Release:**  
+This repository is frozen at [`v1.0-thesis-submission`](https://github.com/jeragilo/quantum-hqnn-thesis/releases/tag/v1.0-thesis-submission),
+corresponding to the final Master’s thesis submission.
+
 # Thesis Overview — Noise-Robust Hybrid Quantum Neural Networks (HQNNs)
 
 This repository contains the full experimental codebase for my Master’s thesis,
