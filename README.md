@@ -1,3 +1,20 @@
+Noise-Robust Hybrid Quantum Neural Networks (HQNNs)
+
+This repository contains the complete experimental codebase for my Master’s thesis,
+which investigates the reliability, robustness, and practical limitations of
+hybrid quantum–classical neural networks (HQNNs) in the NISQ era.
+
+The project consists of a 13-demo experimental ecosystem implemented across
+Qiskit, Cirq, and PennyLane, combining:
+- hybrid quantum learning (HQNNs, SPSA)
+- variational algorithms (VQE, QAOA)
+- quantum kernel methods (QSVM)
+- cross-framework correctness validation
+- noise robustness benchmarking
+- applied case studies (healthcare, energy, cybersecurity)
+
+📌 This repository is intended as a research-grade system.
+
 Demonstration Ecosystem (13 Demos)
 
 This repository includes thirteen experimental demonstrations used in the thesis. Each demo validates a different part of the hybrid architecture.
