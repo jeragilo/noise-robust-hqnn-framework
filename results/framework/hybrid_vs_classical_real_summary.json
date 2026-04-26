@@ -33,7 +33,7 @@
       "dataset": "Synthetic Cybersecurity Traffic",
       "task": "Cybersecurity anomaly detection",
       "model": "HQNN",
-      "accuracy": 0.5444444444444444,
+      "accuracy": 0.4444444444444444,
       "auc": "",
       "notes": "Real output from Demo 11 JSON"
     },

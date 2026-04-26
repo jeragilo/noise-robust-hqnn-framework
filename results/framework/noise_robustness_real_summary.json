@@ -39,7 +39,7 @@
       "mean_value": 0.006266666666666659,
       "min_value": -0.01799999999999996,
       "max_value": 0.025333333333333347,
-      "degradation_slope": -0.11985370950888159,
+      "degradation_slope": -0.11985370950888151,
       "interpretation": "Expectation-value drift under depolarizing noise benchmark."
     },
     {
@@ -50,7 +50,7 @@
       "mean_value": -0.009733333333333339,
       "min_value": -0.02266666666666669,
       "max_value": 0.004000000000000001,
-      "degradation_slope": -0.038087774294670855,
+      "degradation_slope": -0.03808777429467083,
       "interpretation": "Expectation-value drift under depolarizing noise benchmark."
     },
     {
@@ -61,7 +61,7 @@
       "mean_value": 8.326672684688674e-18,
       "min_value": -2.7755575615628914e-17,
       "max_value": 2.7755575615628914e-17,
-      "degradation_slope": -1.9141776286640639e-16,
+      "degradation_slope": -1.914177628664063e-16,
       "interpretation": "Expectation-value drift under depolarizing noise benchmark."
     }
   ],
