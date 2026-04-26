@@ -1,14 +1,23 @@
 #!/usr/bin/env python
 """
-Entry point for running the full HQNN framework.
+Main entry point for the Noise-Robust HQNN Benchmarking Framework.
+
+This script runs the framework-level pipelines that highlight the main
+contributions of the project:
+
+1. Hybrid vs classical benchmarking
+2. Noise robustness analysis
+3. Cross-framework validation
+4. Final benchmark aggregation
+5. Framework capabilities reporting
 """
 
 import subprocess
 
 
-def run(cmd):
-    print(f"\n>>> Running: {cmd}")
-    subprocess.run(cmd, shell=True, check=True)
+def run(command: str) -> None:
+    print(f"\n>>> Running: {command}")
+    subprocess.run(command, shell=True, check=True)
 
 
 if __name__ == "__main__":
@@ -19,3 +28,4 @@ if __name__ == "__main__":
     run("python -m pipelines.main_framework_capabilities_report")
 
     print("\nFramework execution complete.")
+    print("Framework outputs saved in results/framework/")
