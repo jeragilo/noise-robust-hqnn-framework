@@ -1,0 +1,6 @@
+source_demo,dataset,task,model,accuracy,auc,notes
+Demo 09,Synthetic Medical Risk,Medical risk classification,HQNN,0.49333333333333335,,Real output from Demo 09 JSON
+Demo 09,Synthetic Medical Risk,Medical risk classification,Logistic Regression,0.9866666666666667,,Real output from Demo 09 JSON
+Demo 11,Synthetic Cybersecurity Traffic,Cybersecurity anomaly detection,QSVM,0.8444444444444444,0.9061728395061729,Real output from Demo 11 JSON
+Demo 11,Synthetic Cybersecurity Traffic,Cybersecurity anomaly detection,HQNN,0.5444444444444444,,Real output from Demo 11 JSON
+Demo 11,Synthetic Cybersecurity Traffic,Cybersecurity anomaly detection,Logistic Regression,0.9777777777777777,,Real output from Demo 11 JSON

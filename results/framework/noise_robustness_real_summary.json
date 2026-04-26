@@ -1,0 +1,95 @@
+{
+  "description": "Framework-level noise robustness summary using real Demo 13 outputs.",
+  "noise_levels": [
+    0,
+    0.02,
+    0.05,
+    0.1,
+    0.2
+  ],
+  "matrix": {
+    "qiskit": [
+      0.01866666666666661,
+      -0.0020000000000000018,
+      0.007333333333333303,
+      0.025333333333333347,
+      -0.01799999999999996
+    ],
+    "cirq": [
+      0.0,
+      -0.011999999999999995,
+      -0.02266666666666669,
+      0.004000000000000001,
+      -0.018000000000000002
+    ],
+    "pennylane": [
+      1.3877787807814457e-17,
+      1.3877787807814457e-17,
+      1.3877787807814457e-17,
+      2.7755575615628914e-17,
+      -2.7755575615628914e-17
+    ]
+  },
+  "summary_rows": [
+    {
+      "source_demo": "Demo 13",
+      "framework": "qiskit",
+      "noise_levels": "[0, 0.02, 0.05, 0.1, 0.2]",
+      "values": "[0.01866666666666661, -0.0020000000000000018, 0.007333333333333303, 0.025333333333333347, -0.01799999999999996]",
+      "mean_value": 0.006266666666666659,
+      "min_value": -0.01799999999999996,
+      "max_value": 0.025333333333333347,
+      "degradation_slope": -0.11985370950888159,
+      "interpretation": "Expectation-value drift under depolarizing noise benchmark."
+    },
+    {
+      "source_demo": "Demo 13",
+      "framework": "cirq",
+      "noise_levels": "[0, 0.02, 0.05, 0.1, 0.2]",
+      "values": "[0.0, -0.011999999999999995, -0.02266666666666669, 0.004000000000000001, -0.018000000000000002]",
+      "mean_value": -0.009733333333333339,
+      "min_value": -0.02266666666666669,
+      "max_value": 0.004000000000000001,
+      "degradation_slope": -0.038087774294670855,
+      "interpretation": "Expectation-value drift under depolarizing noise benchmark."
+    },
+    {
+      "source_demo": "Demo 13",
+      "framework": "pennylane",
+      "noise_levels": "[0, 0.02, 0.05, 0.1, 0.2]",
+      "values": "[1.3877787807814457e-17, 1.3877787807814457e-17, 1.3877787807814457e-17, 2.7755575615628914e-17, -2.7755575615628914e-17]",
+      "mean_value": 8.326672684688674e-18,
+      "min_value": -2.7755575615628914e-17,
+      "max_value": 2.7755575615628914e-17,
+      "degradation_slope": -1.9141776286640639e-16,
+      "interpretation": "Expectation-value drift under depolarizing noise benchmark."
+    }
+  ],
+  "cross_framework_deviation": [
+    {
+      "source_demo": "Demo 13",
+      "noise_level": 0,
+      "cross_framework_deviation": 0.01866666666666661
+    },
+    {
+      "source_demo": "Demo 13",
+      "noise_level": 0.02,
+      "cross_framework_deviation": 0.012000000000000009
+    },
+    {
+      "source_demo": "Demo 13",
+      "noise_level": 0.05,
+      "cross_framework_deviation": 0.029999999999999992
+    },
+    {
+      "source_demo": "Demo 13",
+      "noise_level": 0.1,
+      "cross_framework_deviation": 0.02533333333333332
+    },
+    {
+      "source_demo": "Demo 13",
+      "noise_level": 0.2,
+      "cross_framework_deviation": 0.017999999999999974
+    }
+  ]
+}

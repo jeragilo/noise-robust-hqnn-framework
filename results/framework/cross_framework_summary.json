@@ -1,0 +1,33 @@
+{
+  "description": "Cross-framework validation results using Demo 07 outputs",
+  "rows": [
+    {
+      "observable": "Z0",
+      "cross_framework_deviation": 0.7071067811865474,
+      "qiskit": 0.0,
+      "cirq": 0.7071066929541701,
+      "pennylane": 0.7071067811865474
+    },
+    {
+      "observable": "Z1",
+      "cross_framework_deviation": 0.7071067811865474,
+      "qiskit": 0.7071067811865474,
+      "cirq": 0.0,
+      "pennylane": 0.0
+    },
+    {
+      "observable": "ZZ",
+      "cross_framework_deviation": 0.0,
+      "qiskit": 0.0,
+      "cirq": 0.0,
+      "pennylane": 0.0
+    },
+    {
+      "observable": "XX",
+      "cross_framework_deviation": 2.4732565662155537e-08,
+      "qiskit": 0.7071067811865474,
+      "cirq": 0.7071067564539817,
+      "pennylane": 0.7071067811865469
+    }
+  ]
+}

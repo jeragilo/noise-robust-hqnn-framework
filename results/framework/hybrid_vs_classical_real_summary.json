@@ -1,0 +1,50 @@
+{
+  "description": "Framework-level hybrid-versus-classical comparison using real outputs from Demo 09 and Demo 11.",
+  "rows": [
+    {
+      "source_demo": "Demo 09",
+      "dataset": "Synthetic Medical Risk",
+      "task": "Medical risk classification",
+      "model": "HQNN",
+      "accuracy": 0.49333333333333335,
+      "auc": "",
+      "notes": "Real output from Demo 09 JSON"
+    },
+    {
+      "source_demo": "Demo 09",
+      "dataset": "Synthetic Medical Risk",
+      "task": "Medical risk classification",
+      "model": "Logistic Regression",
+      "accuracy": 0.9866666666666667,
+      "auc": "",
+      "notes": "Real output from Demo 09 JSON"
+    },
+    {
+      "source_demo": "Demo 11",
+      "dataset": "Synthetic Cybersecurity Traffic",
+      "task": "Cybersecurity anomaly detection",
+      "model": "QSVM",
+      "accuracy": 0.8444444444444444,
+      "auc": 0.9061728395061729,
+      "notes": "Real output from Demo 11 JSON"
+    },
+    {
+      "source_demo": "Demo 11",
+      "dataset": "Synthetic Cybersecurity Traffic",
+      "task": "Cybersecurity anomaly detection",
+      "model": "HQNN",
+      "accuracy": 0.5444444444444444,
+      "auc": "",
+      "notes": "Real output from Demo 11 JSON"
+    },
+    {
+      "source_demo": "Demo 11",
+      "dataset": "Synthetic Cybersecurity Traffic",
+      "task": "Cybersecurity anomaly detection",
+      "model": "Logistic Regression",
+      "accuracy": 0.9777777777777777,
+      "auc": "",
+      "notes": "Real output from Demo 11 JSON"
+    }
+  ]
+}

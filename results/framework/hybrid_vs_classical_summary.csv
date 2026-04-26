@@ -1,0 +1,16 @@
+dataset,model,accuracy
+Synthetic Binary Classification,HQNN,0.5
+Synthetic Binary Classification,QSVM,0.84
+Synthetic Binary Classification,Logistic Regression,0.97
+Synthetic Binary Classification,SVM,0.95
+Synthetic Binary Classification,MLP,0.93
+Iris Binary (setosa vs versicolor),HQNN,0.6
+Iris Binary (setosa vs versicolor),QSVM,0.9
+Iris Binary (setosa vs versicolor),Logistic Regression,0.98
+Iris Binary (setosa vs versicolor),SVM,0.97
+Iris Binary (setosa vs versicolor),MLP,0.96
+Wisconsin Diagnostic Breast Cancer,HQNN,0.49
+Wisconsin Diagnostic Breast Cancer,QSVM,0.85
+Wisconsin Diagnostic Breast Cancer,Logistic Regression,0.99
+Wisconsin Diagnostic Breast Cancer,SVM,0.98
+Wisconsin Diagnostic Breast Cancer,MLP,0.97

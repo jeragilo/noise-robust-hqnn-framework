@@ -1,0 +1,10 @@
+{
+  "description": "Combined framework-level benchmark summary.",
+  "source_files": {
+    "hybrid_vs_classical": "results/framework/hybrid_vs_classical_real_summary.csv",
+    "noise_robustness": "results/framework/noise_robustness_real_summary.csv",
+    "cross_framework": "results/framework/cross_framework_summary.csv"
+  },
+  "row_count": 12,
+  "note": "Rows come from benchmark outputs with different metric columns."
+}
