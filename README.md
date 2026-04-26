@@ -1,125 +1,143 @@
-Noise-Robust Hybrid Quantum Neural Networks (HQNNs)
+Noise-Robust Hybrid Quantum Neural Networks Framework
 
-This repository contains the complete experimental codebase for my Master’s thesis,
-which investigates the reliability, robustness, and practical limitations of
-hybrid quantum–classical neural networks (HQNNs) in the NISQ era.
+This repository contains the experimental codebase for my Master’s thesis, which investigates the reliability, robustness, and practical limitations of hybrid quantum–classical neural networks in the NISQ era.
 
-The project consists of a 13-demo experimental ecosystem implemented across
-Qiskit, Cirq, and PennyLane, combining:
-- hybrid quantum learning (HQNNs, SPSA)
-- variational algorithms (VQE, QAOA)
-- quantum kernel methods (QSVM)
-- cross-framework correctness validation
-- noise robustness benchmarking
-- applied case studies (healthcare, energy, cybersecurity)
+This project is structured as a reusable benchmarking framework, not only as a collection of independent demos.
 
-📌 This repository is intended as a research-grade system.
+Framework Overview: Key Contribution
 
-Demonstration Ecosystem (13 Demos)
+The framework uses Qiskit, Qiskit Aer, Qiskit Machine Learning, Cirq, PennyLane, and scikit-learn as underlying computational libraries. The contribution of this project is the reusable evaluation layer built around those libraries.
 
-This repository includes thirteen experimental demonstrations used in the thesis. Each demo validates a different part of the hybrid architecture.
+The framework adds:
+Standardized dataset handling
+Synthetic data
+Iris
+Wisconsin Diagnostic Breast Cancer (WDBC)
+Quantum-compatible preprocessing
+Designed for low-dimensional quantum input
+Noise-analysis toolbox
+Depolarizing
+Bit-flip
+Phase-flip
+Amplitude damping
+Robustness metrics (nonstandard features)
+accuracy_drop
+robustness_score
+degradation_slope
+training_instability
+cross_framework_deviation
+Benchmark pipelines
+Hybrid vs Classical
+Noise robustness
+Cross-framework validation
+Domain-inspired benchmarks
+Cybersecurity anomaly detection
+Medical classification
+Energy optimization
+Standardized outputs
+JSON
+CSV
+Accuracy plots
+Noise curves
+Heatmaps
+Framework Structure
+
+Main framework code:
+
+framework/
+  datasets.py
+  noise_channels.py
+  robustness_metrics.py
+  reporting.py
+  benchmark_runner.py
+
+Main orchestration pipelines:
+
+pipelines/
+  main_hybrid_vs_classical.py
+  main_noise_robustness.py
+  main_cross_framework_validation.py
+  main_full_benchmark_summary.py
+  main_framework_capabilities_report.py
+
+Framework outputs:
+
+results/framework/
+Running the Framework
+
+Run the full framework:
+
+python run_framework.py
+
+Or run pipelines individually:
+
+python -m pipelines.main_hybrid_vs_classical
+python -m pipelines.main_noise_robustness
+python -m pipelines.main_cross_framework_validation
+python -m pipelines.main_full_benchmark_summary
+python -m pipelines.main_framework_capabilities_report
+Demonstration Ecosystem
+
+The project includes a 13-demo experimental ecosystem across Qiskit, Cirq, and PennyLane.
 
 Core Demos
-
-HQNN Toy Classifier (Qiskit)
-
-VQE Energy Minimization (PennyLane)
-
-QAOA MaxCut (Cirq)
-
-QSVM Anomaly Detection (Qiskit ML)
-
-Noise-Robust HQNN (Qiskit)
-
-Cross-Framework Noise Benchmark (Qiskit/Cirq/PennyLane)
-
-Endianness Parity Consistency (Qiskit/Cirq/PennyLane)
-
-Hybrid HQNN Training Loop with SPSA
-
+HQNN Toy Classifier
+VQE Energy Minimization
+QAOA MaxCut
+QSVM Anomaly Detection
+Noise-Robust HQNN
+Cross-Framework Noise Benchmark
+Cross-Platform Parity Consistency
+HQNN Training Loop (SPSA)
 Industry-Inspired Demos
+Medical Risk Classification
+Energy Grid Optimization
+Cybersecurity Anomaly Detection
+HQNN Explainability
+Cross-Noise Robustness Heatmap
+Running Individual Demos
 
-Medical Risk Classification (HQNN vs Classical)
+Run from the repo root:
 
-Energy Grid Optimization using QAOA (Cirq)
+python -m demos.core.demo05_hqnn_noise_robust_qiskit
 
-Cybersecurity Anomaly Detection (QSVM + HQNN)
+Cybersecurity demo:
 
-HQNN Explainability and Sensitivity Analysis
-
-Cross-Noise Robustness Heatmap (Qiskit/Cirq/PennyLane)
-
-Full descriptions of each demonstration are provided in the Demo_Descriptions.pdf document included in the thesis package.
-
-How to Run a Demo
-
-Each demo is contained inside the demos/ folder.
-
-For example:
-
-cd demos/core
-
-python demo01_hqnn_toy_classifier.py
-
-
-Or for an industry demo:
-
-cd demos/industry
-
-python demo10_energy_qaoa.py
-
-
-Some demos require additional dependencies. Instructions will be added as diagrams and detailed documentation are integrated.
-
+python -m demos.industry.demo11_cyber_anomaly_qiskit
 Environment Setup
+conda create -n hqnn python=3.11 -y
+conda activate hqnn
+pip install -r env/requirements.txt
+Framework-Specific Features
 
-A simple environment setup is provided:
+This framework provides components not available as a unified workflow in default quantum libraries:
 
-python3 -m venv env
-
-source env/bin/activate
-
-pip install -r requirements.txt
-
-Pseudocode
-
-All pseudocode files for the thirteen demos are included in the thesis submission ZIP under:
-
-4_Pseudocode/
-
-
-They are not duplicated in this repository to avoid clutter and maintain a clean structure.
-
+accuracy_drop
+robustness_score
+degradation_slope
+training_instability
+cross_framework_deviation
+framework-level CSV/JSON reporting
+cross-framework validation summaries
+hybrid-versus-classical benchmark summaries
 Documentation
 
-Complete documentation is contained in:
+Includes:
 
-Technical Manuscript (PDF)
-
-Thesis Pre-Draft (~300 pages)
-
-Demo Descriptions (PDF)
-
-Slide Deck (50 slides)
-
-These are included in the thesis submission package sent to the advisor.
-
+Technical Manuscript
+Thesis Draft
+Demo Descriptions
+Slide Deck
+Pseudocode Files
 Status
 
-The codebase is complete.
-The next update will include:
+The repository includes:
 
-architecture diagrams
-
-circuit diagrams
-
-BPMN-style workflow diagrams
-
-demonstration figures and plots
-
+Framework layer
+Pipeline layer
+Core demos
+Industry demos
+Benchmark outputs
 Contact
-
-For inquiries or questions about the project:
-
 
 GitHub: https://github.com/jeragilo/
