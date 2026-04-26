@@ -50,11 +50,9 @@ def build_feature_map(num_qubits, x):
 
 def build_variational_layer(num_qubits, weights):
     qc = QuantumCircuit(num_qubits)
-    # RX, RZ rotations
     for i in range(num_qubits):
         qc.rx(weights[i], i)
         qc.rz(weights[num_qubits + i], i)
-    # Entanglement ring
     for i in range(num_qubits):
         qc.cz(i, (i + 1) % num_qubits)
     return qc
@@ -69,7 +67,7 @@ def build_hqnn_circuit(num_qubits, x, weights):
 
 
 # ============================================================
-# Prediction Logic
+# Parity + Prediction Logic
 # ============================================================
 
 def parity_expval(counts):
@@ -77,17 +75,16 @@ def parity_expval(counts):
     exp = 0
     for bitstring, count in counts.items():
         parity = bitstring.count("1") % 2
-        val = 1 if parity == 0 else -1
-        exp += val * count / shots
+        sign = 1 if parity == 0 else -1
+        exp += sign * count / shots
     return exp
 
 
 def predict_probs(sim, num_qubits, weights, X):
-    """Predict probabilities using parity -> P(y=1) = (1 - exp) / 2."""
     probs = []
     for x in X:
         x_pad = np.zeros(num_qubits)
-        x_pad[: len(x)] = x
+        x_pad[:len(x)] = x
 
         qc = build_hqnn_circuit(num_qubits, x_pad, weights)
         result = sim.run(qc, shots=1024).result()
@@ -101,7 +98,7 @@ def predict_probs(sim, num_qubits, weights, X):
 
 
 # ============================================================
-# Noise Model + ZNE
+# Noise Model
 # ============================================================
 
 def make_noise_model(p=0.01):
@@ -117,21 +114,22 @@ def make_noise_model(p=0.01):
     return nm
 
 
-def zne_predict(sim, circuit):
+def zne_predict(qc):
+    """Perform Zero Noise Extrapolation on an unmeasured circuit."""
     if not ZNE_AVAILABLE:
-        raise RuntimeError("ZNE requested but mthree not installed.")
-    return zne.simulation(circuit, observable="parity", shots=1024)
+        return None
+    return zne.simulation(qc, observable="parity", shots=1024)
 
 
 # ============================================================
-# Demo Execution
+# Main Demo Execution
 # ============================================================
 
 def run_demo(output_dir, noise_p=0.05):
     os.makedirs(output_dir, exist_ok=True)
 
     # --------------------------------------------------------
-    # 1. Dataset (FIXED: must specify redundant=0, repeated=0)
+    # 1. Dataset (FIXED)
     # --------------------------------------------------------
     X, y = make_classification(
         n_samples=200,
@@ -140,7 +138,7 @@ def run_demo(output_dir, noise_p=0.05):
         n_redundant=0,
         n_repeated=0,
         class_sep=1.2,
-        random_state=42,
+        random_state=42
     )
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -153,11 +151,8 @@ def run_demo(output_dir, noise_p=0.05):
 
     num_qubits = 4
     num_params = 2 * num_qubits
-
-    # Random initialization of variational parameters
     weights = np.random.uniform(-np.pi, np.pi, num_params)
 
-    # Simulators
     sim_noiseless = AerSimulator()
     sim_noisy = AerSimulator(noise_model=make_noise_model(noise_p))
 
@@ -174,23 +169,29 @@ def run_demo(output_dir, noise_p=0.05):
     acc_n = accuracy_score(y_test, test_n >= 0.5)
 
     # --------------------------------------------------------
-    # 4. HQNN + ZNE
+    # 4. HQNN + ZNE (fixed)
     # --------------------------------------------------------
     if ZNE_AVAILABLE:
         zne_list = []
         for x in X_test:
             x_pad = np.zeros(num_qubits)
-            x_pad[: len(x)] = x
-            qc = build_hqnn_circuit(num_qubits, x_pad, weights)
-            exp = zne_predict(sim_noisy, qc)
+            x_pad[:len(x)] = x
+
+            # Build *unmeasured* circuit
+            fm = build_feature_map(num_qubits, x_pad)
+            var = build_variational_layer(num_qubits, weights)
+            qc = fm.compose(var)  # unmeasured
+
+            exp = zne_predict(qc)
             p1 = (1 - exp) / 2
             zne_list.append(p1)
+
         acc_zne = accuracy_score(y_test, np.array(zne_list) >= 0.5)
     else:
         acc_zne = None
 
     # --------------------------------------------------------
-    # 5. Classical baseline (MLP)
+    # 5. Classical baseline
     # --------------------------------------------------------
     clf = MLPClassifier(hidden_layer_sizes=(8,), max_iter=300, random_state=42)
     clf.fit(X_train, y_train)
@@ -205,7 +206,7 @@ def run_demo(output_dir, noise_p=0.05):
         "accuracy_noisy": float(acc_n),
         "accuracy_zne": float(acc_zne) if acc_zne is not None else "Not available",
         "accuracy_classical": float(acc_cl),
-        "noise_probability": float(noise_p),
+        "noise_probability": float(noise_p)
     }
 
     json_path = os.path.join(output_dir, "results_demo05.json")
@@ -213,7 +214,7 @@ def run_demo(output_dir, noise_p=0.05):
         json.dump(summary, f, indent=2)
 
     # --------------------------------------------------------
-    # Plot comparison
+    # Plot
     # --------------------------------------------------------
     labels = ["Noiseless HQNN", "Noisy HQNN", "Classical Baseline"]
     accs = [acc_nf, acc_n, acc_cl]

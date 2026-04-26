@@ -9,3 +9,8 @@ qiskit-aer
 
 pyyaml
 tqdm
+pennylane
+cirq
+qiskit-machine-learning
+mthree
+
