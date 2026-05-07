@@ -30,7 +30,18 @@ Result under depolarizing noise:
 | Gain over random parity baseline | +0.5067 |
 
 This supports the main thesis claim that HQNN robustness improves when noise awareness is embedded into the optimization process and richer quantum measurement information is preserved through learned hybrid readouts.
+### Multi-Channel Noise Validation
 
+The flagship HQNN configuration was also validated across four NISQ-relevant noise channels at eval_noise = 0.05.
+
+| Noise Channel | RF Clean Accuracy | RF Noisy Accuracy | Accuracy Drop | Robustness Score |
+|---|---:|---:|---:|---:|
+| Depolarizing | 0.9600 | 0.9467 | 0.0133 | 0.9861 |
+| Bit flip | 0.9467 | 0.9467 | 0.0000 | 1.0000 |
+| Phase flip | 0.9533 | 0.9533 | 0.0000 | 1.0000 |
+| Amplitude damping | 0.9600 | 0.9267 | 0.0333 | 0.9653 |
+
+This strengthens the thesis claim by showing that the flagship HQNN method generalizes beyond a single depolarizing-noise condition.
 ---
 
 ## Main Thesis Claim
