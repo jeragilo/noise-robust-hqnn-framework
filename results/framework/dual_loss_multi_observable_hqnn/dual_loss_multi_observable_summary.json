@@ -1,0 +1,158 @@
+{
+  "description": "Dual-loss multi-observable HQNN experiment. This pipeline combines noise-aware optimization with multi-observable quantum feature extraction and learned classical readouts.",
+  "architecture": "linear",
+  "noise_type": "depolarizing",
+  "train_noise": 0.05,
+  "eval_noise": 0.05,
+  "epochs": 25,
+  "train_shots": 512,
+  "eval_shots": 4096,
+  "results": {
+    "random_untrained": {
+      "training_mode": "random_untrained",
+      "architecture": "linear",
+      "evaluation": {
+        "parity_readout": {
+          "clean_accuracy": 0.38,
+          "noisy_accuracy": 0.4533333333333333,
+          "accuracy_drop": -0.0733333333333333,
+          "robustness_score": 1.1929824561403508
+        },
+        "multi_observable_logistic_regression": {
+          "clean_accuracy": 0.8133333333333334,
+          "noisy_accuracy": 0.84,
+          "accuracy_drop": -0.026666666666666616,
+          "robustness_score": 1.0327868852459017
+        },
+        "multi_observable_random_forest": {
+          "clean_accuracy": 0.8466666666666667,
+          "noisy_accuracy": 0.8733333333333333,
+          "accuracy_drop": -0.026666666666666616,
+          "robustness_score": 1.031496062992126
+        },
+        "feature_dimensions": {
+          "multi_observable_features": 31
+        }
+      }
+    },
+    "standard": {
+      "training_mode": "standard",
+      "architecture": "linear",
+      "evaluation": {
+        "parity_readout": {
+          "clean_accuracy": 0.5466666666666666,
+          "noisy_accuracy": 0.5466666666666666,
+          "accuracy_drop": 0.0,
+          "robustness_score": 1.0
+        },
+        "multi_observable_logistic_regression": {
+          "clean_accuracy": 0.8733333333333333,
+          "noisy_accuracy": 0.8733333333333333,
+          "accuracy_drop": 0.0,
+          "robustness_score": 1.0
+        },
+        "multi_observable_random_forest": {
+          "clean_accuracy": 0.9333333333333333,
+          "noisy_accuracy": 0.9133333333333333,
+          "accuracy_drop": 0.020000000000000018,
+          "robustness_score": 0.9785714285714285
+        },
+        "feature_dimensions": {
+          "multi_observable_features": 31
+        }
+      }
+    },
+    "noise_aware": {
+      "training_mode": "noise_aware",
+      "architecture": "linear",
+      "evaluation": {
+        "parity_readout": {
+          "clean_accuracy": 0.5066666666666667,
+          "noisy_accuracy": 0.4866666666666667,
+          "accuracy_drop": 0.020000000000000018,
+          "robustness_score": 0.9605263157894737
+        },
+        "multi_observable_logistic_regression": {
+          "clean_accuracy": 0.68,
+          "noisy_accuracy": 0.66,
+          "accuracy_drop": 0.020000000000000018,
+          "robustness_score": 0.9705882352941176
+        },
+        "multi_observable_random_forest": {
+          "clean_accuracy": 0.7866666666666666,
+          "noisy_accuracy": 0.7266666666666667,
+          "accuracy_drop": 0.05999999999999994,
+          "robustness_score": 0.9237288135593221
+        },
+        "feature_dimensions": {
+          "multi_observable_features": 31
+        }
+      }
+    },
+    "dual_loss": {
+      "training_mode": "dual_loss",
+      "architecture": "linear",
+      "evaluation": {
+        "parity_readout": {
+          "clean_accuracy": 0.31333333333333335,
+          "noisy_accuracy": 0.35333333333333333,
+          "accuracy_drop": -0.03999999999999998,
+          "robustness_score": 1.127659574468085
+        },
+        "multi_observable_logistic_regression": {
+          "clean_accuracy": 0.86,
+          "noisy_accuracy": 0.82,
+          "accuracy_drop": 0.040000000000000036,
+          "robustness_score": 0.9534883720930232
+        },
+        "multi_observable_random_forest": {
+          "clean_accuracy": 0.9066666666666666,
+          "noisy_accuracy": 0.8666666666666667,
+          "accuracy_drop": 0.039999999999999925,
+          "robustness_score": 0.9558823529411765
+        },
+        "feature_dimensions": {
+          "multi_observable_features": 31
+        }
+      }
+    },
+    "stability_regularized": {
+      "training_mode": "stability_regularized",
+      "architecture": "linear",
+      "evaluation": {
+        "parity_readout": {
+          "clean_accuracy": 0.6,
+          "noisy_accuracy": 0.6,
+          "accuracy_drop": 0.0,
+          "robustness_score": 1.0
+        },
+        "multi_observable_logistic_regression": {
+          "clean_accuracy": 0.9333333333333333,
+          "noisy_accuracy": 0.9133333333333333,
+          "accuracy_drop": 0.020000000000000018,
+          "robustness_score": 0.9785714285714285
+        },
+        "multi_observable_random_forest": {
+          "clean_accuracy": 0.96,
+          "noisy_accuracy": 0.96,
+          "accuracy_drop": 0.0,
+          "robustness_score": 1.0
+        },
+        "feature_dimensions": {
+          "multi_observable_features": 31
+        }
+      }
+    }
+  },
+  "best_overall_by_noisy_accuracy": {
+    "training_mode": "stability_regularized",
+    "readout": "multi_observable_random_forest",
+    "clean_accuracy": 0.96,
+    "noisy_accuracy": 0.96,
+    "accuracy_drop": 0.0,
+    "robustness_score": 1.0
+  },
+  "baseline_random_parity_noisy_accuracy": 0.4533333333333333,
+  "best_noisy_accuracy_gain_over_random_parity": 0.5066666666666666,
+  "thesis_contribution": "This experiment tests whether noise-aware training objectives improve the quantum feature representations used by learned classical readouts. It combines dual-loss optimization, stability regularization, multi-observable feature extraction, and hybrid readout learning."
+}
