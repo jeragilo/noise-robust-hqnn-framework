@@ -4,11 +4,18 @@ Benchmark runner for the Noise-Robust HQNN framework.
 This module connects datasets, models, noise channels, metrics, and reporting.
 It provides high-level functions used by pipeline scripts to highlight the
 main thesis contributions.
+
+Main purpose:
+1. Standardize hybrid/classical comparison.
+2. Standardize noise robustness evaluation.
+3. Standardize cross-framework validation.
+4. Standardize training instability summaries.
+5. Compare standard, noise-aware, dual-loss, and curriculum training modes.
 """
 
 from __future__ import annotations
 
-from typing import Any, Callable, Dict, List, Sequence
+from typing import Any, Dict, List, Sequence
 
 import numpy as np
 
@@ -26,24 +33,16 @@ def run_hybrid_vs_classical_benchmark(
     model_results: Dict[str, float],
 ) -> List[Dict[str, Any]]:
     """
-    Convert hybrid/classical model results into standardized benchmark rows.
+    Convert hybrid, quantum, and classical model results into standardized rows.
 
-    Args:
-        dataset_name:
-            Name of the dataset used.
-
-        model_results:
-            Dictionary mapping model names to accuracy values.
-
-            Example:
-                {
-                    "HQNN": 0.54,
-                    "QSVM": 0.84,
-                    "Logistic Regression": 0.97
-                }
-
-    Returns:
-        List of rows suitable for CSV reporting.
+    Example:
+        {
+            "HQNN": 0.54,
+            "QSVM": 0.84,
+            "Logistic Regression": 0.97,
+            "Random Forest": 0.96,
+            "XGBoost": 0.98
+        }
     """
     rows = []
 
@@ -70,14 +69,19 @@ def run_noise_robustness_benchmark(
     """
     Summarize model robustness under a specific noise channel.
 
-    This function produces thesis-ready metrics:
+    Metrics:
+    - mean noisy accuracy
+    - worst noisy accuracy
+    - best noisy accuracy
     - maximum accuracy drop
     - mean robustness score
     - degradation slope
-    - worst noisy accuracy
     """
     if len(noise_levels) != len(noisy_accuracies):
         raise ValueError("noise_levels and noisy_accuracies must have the same length.")
+
+    if len(noise_levels) == 0:
+        raise ValueError("noise_levels cannot be empty.")
 
     drops = [
         accuracy_drop(noiseless_accuracy, acc)
@@ -98,7 +102,7 @@ def run_noise_robustness_benchmark(
         "best_noisy_accuracy": float(np.max(noisy_accuracies)),
         "max_accuracy_drop": float(np.max(drops)),
         "mean_robustness_score": float(np.mean(scores)),
-        "degradation_slope": degradation_slope(noise_levels, noisy_accuracies),
+        "degradation_slope": float(degradation_slope(noise_levels, noisy_accuracies)),
     }
 
 
@@ -106,19 +110,14 @@ def run_cross_framework_validation(
     expectation_results: Dict[str, Dict[str, float]],
 ) -> List[Dict[str, Any]]:
     """
-    Summarize cross-framework expectation value consistency.
+    Summarize cross-framework expectation-value consistency.
 
-    Args:
-        expectation_results:
-            Example:
-                {
-                    "qiskit": {"ZZ": 0.70, "XX": 0.50},
-                    "cirq": {"ZZ": 0.71, "XX": 0.49},
-                    "pennylane": {"ZZ": 0.70, "XX": 0.51}
-                }
-
-    Returns:
-        Rows with observable-level cross-framework deviation.
+    Example:
+        {
+            "qiskit": {"ZZ": 0.70, "XX": 0.50},
+            "cirq": {"ZZ": 0.71, "XX": 0.49},
+            "pennylane": {"ZZ": 0.70, "XX": 0.51}
+        }
     """
     frameworks = list(expectation_results.keys())
 
@@ -133,7 +132,7 @@ def run_cross_framework_validation(
 
         row = {
             "observable": obs,
-            "cross_framework_deviation": cross_framework_deviation(values),
+            "cross_framework_deviation": float(cross_framework_deviation(values)),
         }
 
         for fw, value in zip(frameworks, values):
@@ -154,22 +153,169 @@ def summarize_training_runs(
 
     This supports claims about initialization sensitivity and optimizer instability.
     """
+    if len(final_accuracies) == 0:
+        raise ValueError("final_accuracies cannot be empty.")
+
     summary = {
         "model": model_name,
         "mean_final_accuracy": float(np.mean(final_accuracies)),
-        "std_final_accuracy": training_instability(final_accuracies),
+        "std_final_accuracy": float(training_instability(final_accuracies)),
         "min_final_accuracy": float(np.min(final_accuracies)),
         "max_final_accuracy": float(np.max(final_accuracies)),
     }
 
     if final_losses is not None:
+        if len(final_losses) == 0:
+            raise ValueError("final_losses cannot be empty when provided.")
+
         summary.update(
             {
                 "mean_final_loss": float(np.mean(final_losses)),
-                "std_final_loss": training_instability(final_losses),
+                "std_final_loss": float(training_instability(final_losses)),
                 "min_final_loss": float(np.min(final_losses)),
                 "max_final_loss": float(np.max(final_losses)),
             }
         )
 
     return summary
+
+
+def compare_training_modes(
+    *,
+    dataset_name: str,
+    model_name: str,
+    training_results: Dict[str, Dict[str, float]],
+) -> List[Dict[str, Any]]:
+    """
+    Compare standard, noise-aware, dual-loss, and curriculum training modes.
+
+    This function is important for the thesis contribution because it makes the
+    noise-aware training pipeline visible as a reusable benchmarking layer.
+
+    Expected input:
+        {
+            "standard": {
+                "clean_accuracy": 0.58,
+                "noisy_accuracy": 0.46,
+                "robustness_score": 0.79
+            },
+            "noise_aware": {
+                "clean_accuracy": 0.62,
+                "noisy_accuracy": 0.55,
+                "robustness_score": 0.88
+            }
+        }
+    """
+    rows: List[Dict[str, Any]] = []
+
+    for training_mode, metrics in training_results.items():
+        clean_accuracy = float(metrics.get("clean_accuracy", metrics.get("accuracy", 0.0)))
+        noisy_accuracy = float(metrics.get("noisy_accuracy", clean_accuracy))
+
+        drop = float(metrics.get(
+            "accuracy_drop",
+            accuracy_drop(clean_accuracy, noisy_accuracy),
+        ))
+
+        robust = float(metrics.get(
+            "robustness_score",
+            robustness_score(noisy_accuracy, clean_accuracy),
+        ))
+
+        rows.append(
+            {
+                "dataset": dataset_name,
+                "model": model_name,
+                "training_mode": training_mode,
+                "clean_accuracy": clean_accuracy,
+                "noisy_accuracy": noisy_accuracy,
+                "accuracy_drop": drop,
+                "robustness_score": robust,
+            }
+        )
+
+    return rows
+
+
+def compare_architectures(
+    *,
+    dataset_name: str,
+    training_mode: str,
+    architecture_results: Dict[str, Dict[str, float]],
+) -> List[Dict[str, Any]]:
+    """
+    Compare HQNN architecture variants.
+
+    Example architectures:
+    - no_entanglement
+    - linear_entanglement
+    - ring_entanglement
+    - full_entanglement
+    - shallow
+    - deep
+
+    This supports the architecture contribution of the thesis.
+    """
+    rows: List[Dict[str, Any]] = []
+
+    for architecture_name, metrics in architecture_results.items():
+        clean_accuracy = float(metrics.get("clean_accuracy", metrics.get("accuracy", 0.0)))
+        noisy_accuracy = float(metrics.get("noisy_accuracy", clean_accuracy))
+
+        rows.append(
+            {
+                "dataset": dataset_name,
+                "training_mode": training_mode,
+                "architecture": architecture_name,
+                "clean_accuracy": clean_accuracy,
+                "noisy_accuracy": noisy_accuracy,
+                "accuracy_drop": float(
+                    metrics.get(
+                        "accuracy_drop",
+                        accuracy_drop(clean_accuracy, noisy_accuracy),
+                    )
+                ),
+                "robustness_score": float(
+                    metrics.get(
+                        "robustness_score",
+                        robustness_score(noisy_accuracy, clean_accuracy),
+                    )
+                ),
+            }
+        )
+
+    return rows
+
+
+def summarize_noise_aware_contribution(
+    *,
+    baseline_clean_accuracy: float,
+    baseline_noisy_accuracy: float,
+    improved_clean_accuracy: float,
+    improved_noisy_accuracy: float,
+) -> Dict[str, Any]:
+    """
+    Summarize the improvement produced by the proposed noise-aware method.
+
+    This gives one thesis-ready statement:
+    how much the improved method improves noisy accuracy and robustness.
+    """
+    baseline_drop = accuracy_drop(baseline_clean_accuracy, baseline_noisy_accuracy)
+    improved_drop = accuracy_drop(improved_clean_accuracy, improved_noisy_accuracy)
+
+    baseline_robustness = robustness_score(baseline_noisy_accuracy, baseline_clean_accuracy)
+    improved_robustness = robustness_score(improved_noisy_accuracy, improved_clean_accuracy)
+
+    return {
+        "baseline_clean_accuracy": float(baseline_clean_accuracy),
+        "baseline_noisy_accuracy": float(baseline_noisy_accuracy),
+        "improved_clean_accuracy": float(improved_clean_accuracy),
+        "improved_noisy_accuracy": float(improved_noisy_accuracy),
+        "noisy_accuracy_gain": float(improved_noisy_accuracy - baseline_noisy_accuracy),
+        "baseline_accuracy_drop": float(baseline_drop),
+        "improved_accuracy_drop": float(improved_drop),
+        "accuracy_drop_reduction": float(baseline_drop - improved_drop),
+        "baseline_robustness_score": float(baseline_robustness),
+        "improved_robustness_score": float(improved_robustness),
+        "robustness_score_gain": float(improved_robustness - baseline_robustness),
+    }
