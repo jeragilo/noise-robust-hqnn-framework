@@ -1,0 +1,84 @@
+{
+  "description": "Multi-channel validation of the flagship HQNN configuration across multiple NISQ-relevant noise channels.",
+  "architecture": "linear",
+  "eval_noise": 0.05,
+  "shots": 4096,
+  "results": [
+    {
+      "noise_type": "depolarizing",
+      "logistic_regression": {
+        "clean_accuracy": 0.9266666666666666,
+        "noisy_accuracy": 0.8933333333333333,
+        "accuracy_drop": 0.033333333333333326,
+        "robustness_score": 0.9640287769784173
+      },
+      "random_forest": {
+        "clean_accuracy": 0.96,
+        "noisy_accuracy": 0.9466666666666667,
+        "accuracy_drop": 0.013333333333333308,
+        "robustness_score": 0.9861111111111112
+      }
+    },
+    {
+      "noise_type": "bit_flip",
+      "logistic_regression": {
+        "clean_accuracy": 0.92,
+        "noisy_accuracy": 0.9133333333333333,
+        "accuracy_drop": 0.00666666666666671,
+        "robustness_score": 0.9927536231884058
+      },
+      "random_forest": {
+        "clean_accuracy": 0.9466666666666667,
+        "noisy_accuracy": 0.9466666666666667,
+        "accuracy_drop": 0.0,
+        "robustness_score": 1.0
+      }
+    },
+    {
+      "noise_type": "phase_flip",
+      "logistic_regression": {
+        "clean_accuracy": 0.9266666666666666,
+        "noisy_accuracy": 0.8866666666666667,
+        "accuracy_drop": 0.039999999999999925,
+        "robustness_score": 0.9568345323741008
+      },
+      "random_forest": {
+        "clean_accuracy": 0.9533333333333334,
+        "noisy_accuracy": 0.9533333333333334,
+        "accuracy_drop": 0.0,
+        "robustness_score": 1.0
+      }
+    },
+    {
+      "noise_type": "amplitude_damping",
+      "logistic_regression": {
+        "clean_accuracy": 0.9133333333333333,
+        "noisy_accuracy": 0.8866666666666667,
+        "accuracy_drop": 0.026666666666666616,
+        "robustness_score": 0.9708029197080292
+      },
+      "random_forest": {
+        "clean_accuracy": 0.96,
+        "noisy_accuracy": 0.9266666666666666,
+        "accuracy_drop": 0.033333333333333326,
+        "robustness_score": 0.9652777777777778
+      }
+    }
+  ],
+  "best_overall_noise_channel": {
+    "noise_type": "phase_flip",
+    "logistic_regression": {
+      "clean_accuracy": 0.9266666666666666,
+      "noisy_accuracy": 0.8866666666666667,
+      "accuracy_drop": 0.039999999999999925,
+      "robustness_score": 0.9568345323741008
+    },
+    "random_forest": {
+      "clean_accuracy": 0.9533333333333334,
+      "noisy_accuracy": 0.9533333333333334,
+      "accuracy_drop": 0.0,
+      "robustness_score": 1.0
+    }
+  },
+  "thesis_contribution": "This experiment tests whether the flagship HQNN configuration generalizes across multiple noise channels instead of only depolarizing noise."
+}
