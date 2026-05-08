@@ -1,0 +1,27 @@
+{
+  "description": "Small-scale real hardware validation for the noise-robust HQNN framework. This compares fixed parity readout against multi-observable learned readout on local Aer simulation and, when configured, an IBM Quantum backend.",
+  "num_qubits": 2,
+  "shots": 1024,
+  "dataset_size": {
+    "train": 26,
+    "test": 14
+  },
+  "aer_simulator": {
+    "parity_accuracy": 0.5714285714285714,
+    "multi_observable_logistic_accuracy": 0.5,
+    "feature_dimension": 8
+  },
+  "ibm_metadata": {
+    "ibm_runtime_available": true,
+    "ibm_backend_available": true,
+    "backend_name": "ibm_fez",
+    "note": "IBM backend selected successfully.",
+    "num_qubits": 156
+  },
+  "ibm_hardware": {
+    "parity_accuracy": 0.6428571428571429,
+    "multi_observable_logistic_accuracy": 0.5,
+    "feature_dimension": 8
+  },
+  "thesis_contribution": "This hardware-validation substudy tests whether the same multi-observable readout logic used in the framework can be applied to real NISQ backend measurement counts."
+}
