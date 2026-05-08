@@ -1,0 +1,677 @@
+{
+  "description": "Dedicated quantum-classical feature fusion experiment. This pipeline compares classical-only learning, quantum-only multi-observable learning, clean-trained feature fusion, and noise-augmented feature fusion under multiple NISQ-style noise channels.",
+  "architecture": "linear",
+  "noise_level": 0.05,
+  "shots": 4096,
+  "num_qubits": 4,
+  "feature_dimensions": {
+    "classical_features": 4,
+    "quantum_multi_observable_features": 31,
+    "fusion_features": 35
+  },
+  "eval_noise_channels": [
+    "depolarizing",
+    "bit_flip",
+    "phase_flip",
+    "amplitude_damping"
+  ],
+  "experiment_modes": {
+    "classical_only": {
+      "mode": "classical_only",
+      "training_noise_channels": [
+        null
+      ]
+    },
+    "quantum_only_clean_train": {
+      "mode": "quantum_only",
+      "training_noise_channels": [
+        null
+      ]
+    },
+    "fusion_clean_train": {
+      "mode": "fusion",
+      "training_noise_channels": [
+        null
+      ]
+    },
+    "fusion_noise_augmented": {
+      "mode": "fusion",
+      "training_noise_channels": [
+        null,
+        "depolarizing",
+        "bit_flip",
+        "phase_flip",
+        "amplitude_damping"
+      ]
+    }
+  },
+  "results": {
+    "classical_only": {
+      "logistic_regression": {
+        "clean_accuracy": 0.8733333333333333,
+        "mean_noisy_accuracy": 0.8733333333333333,
+        "min_noisy_accuracy": 0.8733333333333333,
+        "max_noisy_accuracy": 0.8733333333333333,
+        "std_noisy_accuracy": 0.0,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.8733333333333333,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.8733333333333333,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.8733333333333333,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.8733333333333333,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        }
+      },
+      "svm_rbf": {
+        "clean_accuracy": 0.9866666666666667,
+        "mean_noisy_accuracy": 0.9866666666666667,
+        "min_noisy_accuracy": 0.9866666666666667,
+        "max_noisy_accuracy": 0.9866666666666667,
+        "std_noisy_accuracy": 0.0,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        }
+      },
+      "random_forest": {
+        "clean_accuracy": 0.9733333333333334,
+        "mean_noisy_accuracy": 0.9733333333333334,
+        "min_noisy_accuracy": 0.9733333333333334,
+        "max_noisy_accuracy": 0.9733333333333334,
+        "std_noisy_accuracy": 0.0,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        }
+      },
+      "extra_trees": {
+        "clean_accuracy": 0.9866666666666667,
+        "mean_noisy_accuracy": 0.9866666666666667,
+        "min_noisy_accuracy": 0.9866666666666667,
+        "max_noisy_accuracy": 0.9866666666666667,
+        "std_noisy_accuracy": 0.0,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        }
+      },
+      "gradient_boosting": {
+        "clean_accuracy": 0.9733333333333334,
+        "mean_noisy_accuracy": 0.9733333333333334,
+        "min_noisy_accuracy": 0.9733333333333334,
+        "max_noisy_accuracy": 0.9733333333333334,
+        "std_noisy_accuracy": 0.0,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        }
+      }
+    },
+    "quantum_only_clean_train": {
+      "logistic_regression": {
+        "clean_accuracy": 0.8266666666666667,
+        "mean_noisy_accuracy": 0.8066666666666666,
+        "min_noisy_accuracy": 0.8,
+        "max_noisy_accuracy": 0.8133333333333334,
+        "std_noisy_accuracy": 0.004714045207910308,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.8133333333333334,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9838709677419355
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.8066666666666666,
+            "accuracy_drop": 0.020000000000000018,
+            "robustness_score": 0.9758064516129032
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.8066666666666666,
+            "accuracy_drop": 0.020000000000000018,
+            "robustness_score": 0.9758064516129032
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.8,
+            "accuracy_drop": 0.026666666666666616,
+            "robustness_score": 0.967741935483871
+          }
+        }
+      },
+      "svm_rbf": {
+        "clean_accuracy": 0.8266666666666667,
+        "mean_noisy_accuracy": 0.835,
+        "min_noisy_accuracy": 0.8266666666666667,
+        "max_noisy_accuracy": 0.84,
+        "std_noisy_accuracy": 0.005527707983925652,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.8266666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.8333333333333334,
+            "accuracy_drop": -0.00666666666666671,
+            "robustness_score": 1.0080645161290323
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.84,
+            "accuracy_drop": -0.013333333333333308,
+            "robustness_score": 1.0161290322580645
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.84,
+            "accuracy_drop": -0.013333333333333308,
+            "robustness_score": 1.0161290322580645
+          }
+        }
+      },
+      "random_forest": {
+        "clean_accuracy": 0.8666666666666667,
+        "mean_noisy_accuracy": 0.8499999999999999,
+        "min_noisy_accuracy": 0.8,
+        "max_noisy_accuracy": 0.8733333333333333,
+        "std_noisy_accuracy": 0.029999999999999968,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.8533333333333334,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9846153846153847
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.8,
+            "accuracy_drop": 0.06666666666666665,
+            "robustness_score": 0.9230769230769231
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.8733333333333333,
+            "accuracy_drop": -0.006666666666666599,
+            "robustness_score": 1.0076923076923077
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.8733333333333333,
+            "accuracy_drop": -0.006666666666666599,
+            "robustness_score": 1.0076923076923077
+          }
+        }
+      },
+      "extra_trees": {
+        "clean_accuracy": 0.9,
+        "mean_noisy_accuracy": 0.8633333333333333,
+        "min_noisy_accuracy": 0.8533333333333334,
+        "max_noisy_accuracy": 0.88,
+        "std_noisy_accuracy": 0.011055415967851312,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.8533333333333334,
+            "accuracy_drop": 0.046666666666666634,
+            "robustness_score": 0.9481481481481482
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.8533333333333334,
+            "accuracy_drop": 0.046666666666666634,
+            "robustness_score": 0.9481481481481482
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.8666666666666667,
+            "accuracy_drop": 0.033333333333333326,
+            "robustness_score": 0.962962962962963
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.88,
+            "accuracy_drop": 0.020000000000000018,
+            "robustness_score": 0.9777777777777777
+          }
+        }
+      },
+      "gradient_boosting": {
+        "clean_accuracy": 0.8733333333333333,
+        "mean_noisy_accuracy": 0.8516666666666667,
+        "min_noisy_accuracy": 0.8266666666666667,
+        "max_noisy_accuracy": 0.88,
+        "std_noisy_accuracy": 0.019075871903766,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.8466666666666667,
+            "accuracy_drop": 0.026666666666666616,
+            "robustness_score": 0.9694656488549619
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.8266666666666667,
+            "accuracy_drop": 0.046666666666666634,
+            "robustness_score": 0.9465648854961832
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.8533333333333334,
+            "accuracy_drop": 0.019999999999999907,
+            "robustness_score": 0.9770992366412214
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.88,
+            "accuracy_drop": -0.00666666666666671,
+            "robustness_score": 1.0076335877862597
+          }
+        }
+      }
+    },
+    "fusion_clean_train": {
+      "logistic_regression": {
+        "clean_accuracy": 0.9266666666666666,
+        "mean_noisy_accuracy": 0.9066666666666667,
+        "min_noisy_accuracy": 0.88,
+        "max_noisy_accuracy": 0.9333333333333333,
+        "std_noisy_accuracy": 0.019436506316151004,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9,
+            "accuracy_drop": 0.026666666666666616,
+            "robustness_score": 0.9712230215827339
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.88,
+            "accuracy_drop": 0.046666666666666634,
+            "robustness_score": 0.9496402877697842
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.9333333333333333,
+            "accuracy_drop": -0.00666666666666671,
+            "robustness_score": 1.0071942446043165
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.9133333333333333,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9856115107913669
+          }
+        }
+      },
+      "svm_rbf": {
+        "clean_accuracy": 0.98,
+        "mean_noisy_accuracy": 0.9733333333333333,
+        "min_noisy_accuracy": 0.9666666666666667,
+        "max_noisy_accuracy": 0.98,
+        "std_noisy_accuracy": 0.006666666666666654,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9863945578231292
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9863945578231292
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.98,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.98,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        }
+      },
+      "random_forest": {
+        "clean_accuracy": 0.9533333333333334,
+        "mean_noisy_accuracy": 0.9266666666666666,
+        "min_noisy_accuracy": 0.9133333333333333,
+        "max_noisy_accuracy": 0.94,
+        "std_noisy_accuracy": 0.010540925533894577,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9333333333333333,
+            "accuracy_drop": 0.020000000000000018,
+            "robustness_score": 0.979020979020979
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9133333333333333,
+            "accuracy_drop": 0.040000000000000036,
+            "robustness_score": 0.958041958041958
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.92,
+            "accuracy_drop": 0.033333333333333326,
+            "robustness_score": 0.965034965034965
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.94,
+            "accuracy_drop": 0.01333333333333342,
+            "robustness_score": 0.9860139860139859
+          }
+        }
+      },
+      "extra_trees": {
+        "clean_accuracy": 0.96,
+        "mean_noisy_accuracy": 0.9333333333333333,
+        "min_noisy_accuracy": 0.9266666666666666,
+        "max_noisy_accuracy": 0.94,
+        "std_noisy_accuracy": 0.004714045207910308,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9266666666666666,
+            "accuracy_drop": 0.033333333333333326,
+            "robustness_score": 0.9652777777777778
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.94,
+            "accuracy_drop": 0.020000000000000018,
+            "robustness_score": 0.9791666666666666
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.9333333333333333,
+            "accuracy_drop": 0.026666666666666616,
+            "robustness_score": 0.9722222222222223
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.9333333333333333,
+            "accuracy_drop": 0.026666666666666616,
+            "robustness_score": 0.9722222222222223
+          }
+        }
+      },
+      "gradient_boosting": {
+        "clean_accuracy": 0.9666666666666667,
+        "mean_noisy_accuracy": 0.96,
+        "min_noisy_accuracy": 0.94,
+        "max_noisy_accuracy": 0.9733333333333334,
+        "std_noisy_accuracy": 0.012472191289246507,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.96,
+            "accuracy_drop": 0.00666666666666671,
+            "robustness_score": 0.993103448275862
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.94,
+            "accuracy_drop": 0.026666666666666727,
+            "robustness_score": 0.9724137931034482
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": -0.00666666666666671,
+            "robustness_score": 1.006896551724138
+          }
+        }
+      }
+    },
+    "fusion_noise_augmented": {
+      "logistic_regression": {
+        "clean_accuracy": 0.9333333333333333,
+        "mean_noisy_accuracy": 0.93,
+        "min_noisy_accuracy": 0.9133333333333333,
+        "max_noisy_accuracy": 0.9466666666666667,
+        "std_noisy_accuracy": 0.013743685418725516,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.92,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9857142857142858
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9133333333333333,
+            "accuracy_drop": 0.020000000000000018,
+            "robustness_score": 0.9785714285714285
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.9466666666666667,
+            "accuracy_drop": -0.013333333333333308,
+            "robustness_score": 1.0142857142857142
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.94,
+            "accuracy_drop": -0.006666666666666599,
+            "robustness_score": 1.0071428571428571
+          }
+        }
+      },
+      "svm_rbf": {
+        "clean_accuracy": 0.9866666666666667,
+        "mean_noisy_accuracy": 0.985,
+        "min_noisy_accuracy": 0.98,
+        "max_noisy_accuracy": 0.9866666666666667,
+        "std_noisy_accuracy": 0.002886751345948147,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.98,
+            "accuracy_drop": 0.00666666666666671,
+            "robustness_score": 0.9932432432432432
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.9866666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        }
+      },
+      "random_forest": {
+        "clean_accuracy": 0.96,
+        "mean_noisy_accuracy": 0.9566666666666667,
+        "min_noisy_accuracy": 0.9533333333333334,
+        "max_noisy_accuracy": 0.96,
+        "std_noisy_accuracy": 0.0033333333333332993,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9533333333333334,
+            "accuracy_drop": 0.006666666666666599,
+            "robustness_score": 0.9930555555555556
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9533333333333334,
+            "accuracy_drop": 0.006666666666666599,
+            "robustness_score": 0.9930555555555556
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.96,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.96,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        }
+      },
+      "extra_trees": {
+        "clean_accuracy": 0.9533333333333334,
+        "mean_noisy_accuracy": 0.9683333333333334,
+        "min_noisy_accuracy": 0.9533333333333334,
+        "max_noisy_accuracy": 0.98,
+        "std_noisy_accuracy": 0.009860132971832683,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": -0.020000000000000018,
+            "robustness_score": 1.020979020979021
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": -0.013333333333333308,
+            "robustness_score": 1.013986013986014
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.9533333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.98,
+            "accuracy_drop": -0.026666666666666616,
+            "robustness_score": 1.027972027972028
+          }
+        }
+      },
+      "gradient_boosting": {
+        "clean_accuracy": 0.9733333333333334,
+        "mean_noisy_accuracy": 0.97,
+        "min_noisy_accuracy": 0.9666666666666667,
+        "max_noisy_accuracy": 0.9733333333333334,
+        "std_noisy_accuracy": 0.003333333333333355,
+        "noise_results": {
+          "depolarizing": {
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": 0.00666666666666671,
+            "robustness_score": 0.9931506849315068
+          },
+          "bit_flip": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "phase_flip": {
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "amplitude_damping": {
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": 0.00666666666666671,
+            "robustness_score": 0.9931506849315068
+          }
+        }
+      }
+    }
+  },
+  "best_by_mean_noisy_accuracy": {
+    "experiment": "classical_only",
+    "model": "svm_rbf",
+    "clean_accuracy": 0.9866666666666667,
+    "mean_noisy_accuracy": 0.9866666666666667,
+    "min_noisy_accuracy": 0.9866666666666667,
+    "max_noisy_accuracy": 0.9866666666666667,
+    "std_noisy_accuracy": 0.0
+  },
+  "best_by_worst_case_noisy_accuracy": {
+    "experiment": "classical_only",
+    "model": "svm_rbf",
+    "clean_accuracy": 0.9866666666666667,
+    "mean_noisy_accuracy": 0.9866666666666667,
+    "min_noisy_accuracy": 0.9866666666666667,
+    "max_noisy_accuracy": 0.9866666666666667,
+    "std_noisy_accuracy": 0.0
+  },
+  "best_classical_only": {
+    "experiment": "classical_only",
+    "model": "svm_rbf",
+    "clean_accuracy": 0.9866666666666667,
+    "mean_noisy_accuracy": 0.9866666666666667,
+    "min_noisy_accuracy": 0.9866666666666667,
+    "max_noisy_accuracy": 0.9866666666666667,
+    "std_noisy_accuracy": 0.0
+  },
+  "best_fusion": {
+    "experiment": "fusion_noise_augmented",
+    "model": "svm_rbf",
+    "clean_accuracy": 0.9866666666666667,
+    "mean_noisy_accuracy": 0.985,
+    "min_noisy_accuracy": 0.98,
+    "max_noisy_accuracy": 0.9866666666666667,
+    "std_noisy_accuracy": 0.002886751345948147
+  },
+  "fusion_gain_over_best_classical_mean_noisy": -0.0016666666666667052,
+  "fusion_gain_over_best_classical_worst_case": -0.00666666666666671,
+  "thesis_contribution": "This experiment tests whether quantum-derived multi-observable features complement classical features when both are combined in a noise-aware hybrid readout. The contribution is not framed as pure quantum advantage, but as evidence that quantum feature extraction can participate in a stronger hybrid quantum-classical learning pipeline under NISQ noise."
+}
