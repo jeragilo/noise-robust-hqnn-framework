@@ -1,0 +1,489 @@
+{
+  "description": "Classical-challenging nonlinear benchmark comparing classical-only, quantum-only, quantum-classical fusion, and noise-augmented fusion on moons, circles, and XOR-style datasets.",
+  "datasets": {
+    "moons": {
+      "dataset_name": "moons",
+      "results": {
+        "classical_only": {
+          "logistic_regression": {
+            "clean_accuracy": 0.8533333333333334,
+            "noisy_accuracy": 0.8533333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.98,
+            "noisy_accuracy": 0.98,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "random_forest": {
+            "clean_accuracy": 0.96,
+            "noisy_accuracy": 0.96,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.9733333333333334,
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.96,
+            "noisy_accuracy": 0.96,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        },
+        "quantum_only": {
+          "logistic_regression": {
+            "clean_accuracy": 0.6933333333333334,
+            "noisy_accuracy": 0.64,
+            "accuracy_drop": 0.053333333333333344,
+            "robustness_score": 0.923076923076923
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.7666666666666667,
+            "noisy_accuracy": 0.7,
+            "accuracy_drop": 0.06666666666666676,
+            "robustness_score": 0.9130434782608694
+          },
+          "random_forest": {
+            "clean_accuracy": 0.8266666666666667,
+            "noisy_accuracy": 0.7,
+            "accuracy_drop": 0.1266666666666667,
+            "robustness_score": 0.846774193548387
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.84,
+            "noisy_accuracy": 0.7,
+            "accuracy_drop": 0.14,
+            "robustness_score": 0.8333333333333333
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.7933333333333333,
+            "noisy_accuracy": 0.6466666666666666,
+            "accuracy_drop": 0.14666666666666672,
+            "robustness_score": 0.815126050420168
+          }
+        },
+        "fusion_clean_train": {
+          "logistic_regression": {
+            "clean_accuracy": 0.9666666666666667,
+            "noisy_accuracy": 0.9266666666666666,
+            "accuracy_drop": 0.040000000000000036,
+            "robustness_score": 0.9586206896551723
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.98,
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9863945578231292
+          },
+          "random_forest": {
+            "clean_accuracy": 0.9666666666666667,
+            "noisy_accuracy": 0.9533333333333334,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9862068965517241
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.9466666666666667,
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": -0.020000000000000018,
+            "robustness_score": 1.0211267605633803
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.96,
+            "noisy_accuracy": 0.9533333333333334,
+            "accuracy_drop": 0.006666666666666599,
+            "robustness_score": 0.9930555555555556
+          }
+        },
+        "fusion_noise_augmented": {
+          "logistic_regression": {
+            "clean_accuracy": 0.9666666666666667,
+            "noisy_accuracy": 0.9533333333333334,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9862068965517241
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.9666666666666667,
+            "noisy_accuracy": 0.98,
+            "accuracy_drop": -0.013333333333333308,
+            "robustness_score": 1.013793103448276
+          },
+          "random_forest": {
+            "clean_accuracy": 0.96,
+            "noisy_accuracy": 0.96,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.9533333333333334,
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": -0.013333333333333308,
+            "robustness_score": 1.013986013986014
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.9466666666666667,
+            "noisy_accuracy": 0.9533333333333334,
+            "accuracy_drop": -0.00666666666666671,
+            "robustness_score": 1.0070422535211268
+          }
+        }
+      },
+      "best_overall": {
+        "dataset": "moons",
+        "experiment": "classical_only",
+        "model": "svm_rbf",
+        "clean_accuracy": 0.98,
+        "noisy_accuracy": 0.98,
+        "accuracy_drop": 0.0,
+        "robustness_score": 1.0
+      },
+      "best_classical": {
+        "dataset": "moons",
+        "experiment": "classical_only",
+        "model": "svm_rbf",
+        "clean_accuracy": 0.98,
+        "noisy_accuracy": 0.98,
+        "accuracy_drop": 0.0,
+        "robustness_score": 1.0
+      },
+      "best_fusion": {
+        "dataset": "moons",
+        "experiment": "fusion_noise_augmented",
+        "model": "svm_rbf",
+        "clean_accuracy": 0.9666666666666667,
+        "noisy_accuracy": 0.98,
+        "accuracy_drop": -0.013333333333333308,
+        "robustness_score": 1.013793103448276
+      },
+      "fusion_gain_over_best_classical": 0.0
+    },
+    "circles": {
+      "dataset_name": "circles",
+      "results": {
+        "classical_only": {
+          "logistic_regression": {
+            "clean_accuracy": 0.4666666666666667,
+            "noisy_accuracy": 0.4666666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.9666666666666667,
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "random_forest": {
+            "clean_accuracy": 0.9666666666666667,
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.9733333333333334,
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.98,
+            "noisy_accuracy": 0.98,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        },
+        "quantum_only": {
+          "logistic_regression": {
+            "clean_accuracy": 0.7066666666666667,
+            "noisy_accuracy": 0.72,
+            "accuracy_drop": -0.013333333333333308,
+            "robustness_score": 1.0188679245283019
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.8,
+            "noisy_accuracy": 0.68,
+            "accuracy_drop": 0.12,
+            "robustness_score": 0.85
+          },
+          "random_forest": {
+            "clean_accuracy": 0.92,
+            "noisy_accuracy": 0.6733333333333333,
+            "accuracy_drop": 0.2466666666666667,
+            "robustness_score": 0.7318840579710144
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.9066666666666666,
+            "noisy_accuracy": 0.68,
+            "accuracy_drop": 0.22666666666666657,
+            "robustness_score": 0.7500000000000001
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.92,
+            "noisy_accuracy": 0.68,
+            "accuracy_drop": 0.24,
+            "robustness_score": 0.7391304347826088
+          }
+        },
+        "fusion_clean_train": {
+          "logistic_regression": {
+            "clean_accuracy": 0.6866666666666666,
+            "noisy_accuracy": 0.6333333333333333,
+            "accuracy_drop": 0.053333333333333344,
+            "robustness_score": 0.9223300970873787
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.9733333333333334,
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "random_forest": {
+            "clean_accuracy": 0.98,
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.006666666666666599,
+            "robustness_score": 0.9931972789115647
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.9866666666666667,
+            "noisy_accuracy": 0.9133333333333333,
+            "accuracy_drop": 0.07333333333333336,
+            "robustness_score": 0.9256756756756757
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.9733333333333334,
+            "noisy_accuracy": 0.9666666666666667,
+            "accuracy_drop": 0.00666666666666671,
+            "robustness_score": 0.9931506849315068
+          }
+        },
+        "fusion_noise_augmented": {
+          "logistic_regression": {
+            "clean_accuracy": 0.6933333333333334,
+            "noisy_accuracy": 0.6666666666666666,
+            "accuracy_drop": 0.026666666666666727,
+            "robustness_score": 0.9615384615384615
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.9733333333333334,
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "random_forest": {
+            "clean_accuracy": 0.98,
+            "noisy_accuracy": 0.98,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.98,
+            "noisy_accuracy": 0.9733333333333334,
+            "accuracy_drop": 0.006666666666666599,
+            "robustness_score": 0.9931972789115647
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.9666666666666667,
+            "noisy_accuracy": 0.96,
+            "accuracy_drop": 0.00666666666666671,
+            "robustness_score": 0.993103448275862
+          }
+        }
+      },
+      "best_overall": {
+        "dataset": "circles",
+        "experiment": "classical_only",
+        "model": "gradient_boosting",
+        "clean_accuracy": 0.98,
+        "noisy_accuracy": 0.98,
+        "accuracy_drop": 0.0,
+        "robustness_score": 1.0
+      },
+      "best_classical": {
+        "dataset": "circles",
+        "experiment": "classical_only",
+        "model": "gradient_boosting",
+        "clean_accuracy": 0.98,
+        "noisy_accuracy": 0.98,
+        "accuracy_drop": 0.0,
+        "robustness_score": 1.0
+      },
+      "best_fusion": {
+        "dataset": "circles",
+        "experiment": "fusion_noise_augmented",
+        "model": "random_forest",
+        "clean_accuracy": 0.98,
+        "noisy_accuracy": 0.98,
+        "accuracy_drop": 0.0,
+        "robustness_score": 1.0
+      },
+      "fusion_gain_over_best_classical": 0.0
+    },
+    "xor": {
+      "dataset_name": "xor",
+      "results": {
+        "classical_only": {
+          "logistic_regression": {
+            "clean_accuracy": 0.3933333333333333,
+            "noisy_accuracy": 0.3933333333333333,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.9066666666666666,
+            "noisy_accuracy": 0.9066666666666666,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "random_forest": {
+            "clean_accuracy": 0.9066666666666666,
+            "noisy_accuracy": 0.9066666666666666,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.9,
+            "noisy_accuracy": 0.9,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.8666666666666667,
+            "noisy_accuracy": 0.8666666666666667,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          }
+        },
+        "quantum_only": {
+          "logistic_regression": {
+            "clean_accuracy": 0.44666666666666666,
+            "noisy_accuracy": 0.4533333333333333,
+            "accuracy_drop": -0.006666666666666654,
+            "robustness_score": 1.0149253731343284
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.7,
+            "noisy_accuracy": 0.62,
+            "accuracy_drop": 0.07999999999999996,
+            "robustness_score": 0.8857142857142858
+          },
+          "random_forest": {
+            "clean_accuracy": 0.7733333333333333,
+            "noisy_accuracy": 0.6133333333333333,
+            "accuracy_drop": 0.16000000000000003,
+            "robustness_score": 0.793103448275862
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.76,
+            "noisy_accuracy": 0.5933333333333334,
+            "accuracy_drop": 0.16666666666666663,
+            "robustness_score": 0.780701754385965
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.7733333333333333,
+            "noisy_accuracy": 0.6,
+            "accuracy_drop": 0.17333333333333334,
+            "robustness_score": 0.7758620689655172
+          }
+        },
+        "fusion_clean_train": {
+          "logistic_regression": {
+            "clean_accuracy": 0.44666666666666666,
+            "noisy_accuracy": 0.49333333333333335,
+            "accuracy_drop": -0.04666666666666669,
+            "robustness_score": 1.1044776119402986
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.8933333333333333,
+            "noisy_accuracy": 0.88,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9850746268656717
+          },
+          "random_forest": {
+            "clean_accuracy": 0.8466666666666667,
+            "noisy_accuracy": 0.6933333333333334,
+            "accuracy_drop": 0.15333333333333332,
+            "robustness_score": 0.8188976377952756
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.86,
+            "noisy_accuracy": 0.7533333333333333,
+            "accuracy_drop": 0.10666666666666669,
+            "robustness_score": 0.875968992248062
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.8933333333333333,
+            "noisy_accuracy": 0.8,
+            "accuracy_drop": 0.09333333333333327,
+            "robustness_score": 0.8955223880597015
+          }
+        },
+        "fusion_noise_augmented": {
+          "logistic_regression": {
+            "clean_accuracy": 0.5133333333333333,
+            "noisy_accuracy": 0.5133333333333333,
+            "accuracy_drop": 0.0,
+            "robustness_score": 1.0
+          },
+          "svm_rbf": {
+            "clean_accuracy": 0.8933333333333333,
+            "noisy_accuracy": 0.92,
+            "accuracy_drop": -0.026666666666666727,
+            "robustness_score": 1.0298507462686568
+          },
+          "random_forest": {
+            "clean_accuracy": 0.8533333333333334,
+            "noisy_accuracy": 0.8333333333333334,
+            "accuracy_drop": 0.020000000000000018,
+            "robustness_score": 0.9765625
+          },
+          "extra_trees": {
+            "clean_accuracy": 0.86,
+            "noisy_accuracy": 0.8666666666666667,
+            "accuracy_drop": -0.00666666666666671,
+            "robustness_score": 1.0077519379844961
+          },
+          "gradient_boosting": {
+            "clean_accuracy": 0.9,
+            "noisy_accuracy": 0.8866666666666667,
+            "accuracy_drop": 0.013333333333333308,
+            "robustness_score": 0.9851851851851852
+          }
+        }
+      },
+      "best_overall": {
+        "dataset": "xor",
+        "experiment": "fusion_noise_augmented",
+        "model": "svm_rbf",
+        "clean_accuracy": 0.8933333333333333,
+        "noisy_accuracy": 0.92,
+        "accuracy_drop": -0.026666666666666727,
+        "robustness_score": 1.0298507462686568
+      },
+      "best_classical": {
+        "dataset": "xor",
+        "experiment": "classical_only",
+        "model": "svm_rbf",
+        "clean_accuracy": 0.9066666666666666,
+        "noisy_accuracy": 0.9066666666666666,
+        "accuracy_drop": 0.0,
+        "robustness_score": 1.0
+      },
+      "best_fusion": {
+        "dataset": "xor",
+        "experiment": "fusion_noise_augmented",
+        "model": "svm_rbf",
+        "clean_accuracy": 0.8933333333333333,
+        "noisy_accuracy": 0.92,
+        "accuracy_drop": -0.026666666666666727,
+        "robustness_score": 1.0298507462686568
+      },
+      "fusion_gain_over_best_classical": 0.01333333333333342
+    }
+  },
+  "thesis_contribution": "This experiment tests whether quantum-derived multi-observable features provide more value on nonlinear decision boundaries where simple classical linear models struggle. It provides a fairer test of hybrid feature fusion than highly separable synthetic datasets."
+}
