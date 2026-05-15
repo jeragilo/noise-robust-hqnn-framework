@@ -1,0 +1,233 @@
+{
+  "description": "Cross-ablation study isolating the contributions of noise-aware quantum feature generation and noise-augmented classical readout.",
+  "architecture": "linear",
+  "noise_type": "depolarizing",
+  "train_noise": 0.05,
+  "eval_noise": 0.05,
+  "epochs": 12,
+  "shots": 1024,
+  "results": {
+    "standard_loss + standard_readout": {
+      "objective_mode": "standard_loss",
+      "readout_training_mode": "standard_readout",
+      "architecture": "linear",
+      "noise_type": "depolarizing",
+      "train_noise": 0.05,
+      "eval_noise": 0.05,
+      "epochs": 12,
+      "shots": 1024,
+      "feature_dimension": 28,
+      "readout_results": {
+        "logistic_regression": {
+          "clean_accuracy": 0.68,
+          "noisy_accuracy": 0.6933333333333334,
+          "accuracy_drop": -0.013333333333333308,
+          "robustness_score": 1.0196078431372548
+        },
+        "svm_rbf": {
+          "clean_accuracy": 0.6733333333333333,
+          "noisy_accuracy": 0.68,
+          "accuracy_drop": -0.00666666666666671,
+          "robustness_score": 1.00990099009901
+        },
+        "random_forest": {
+          "clean_accuracy": 0.7466666666666667,
+          "noisy_accuracy": 0.7,
+          "accuracy_drop": 0.046666666666666745,
+          "robustness_score": 0.9374999999999999
+        },
+        "gradient_boosting": {
+          "clean_accuracy": 0.7066666666666667,
+          "noisy_accuracy": 0.64,
+          "accuracy_drop": 0.06666666666666665,
+          "robustness_score": 0.9056603773584906
+        }
+      },
+      "best_model": "random_forest",
+      "best_metrics": {
+        "clean_accuracy": 0.7466666666666667,
+        "noisy_accuracy": 0.7,
+        "accuracy_drop": 0.046666666666666745,
+        "robustness_score": 0.9374999999999999
+      }
+    },
+    "standard_loss + noise_augmented_readout": {
+      "objective_mode": "standard_loss",
+      "readout_training_mode": "noise_augmented_readout",
+      "architecture": "linear",
+      "noise_type": "depolarizing",
+      "train_noise": 0.05,
+      "eval_noise": 0.05,
+      "epochs": 12,
+      "shots": 1024,
+      "feature_dimension": 28,
+      "readout_results": {
+        "logistic_regression": {
+          "clean_accuracy": 0.76,
+          "noisy_accuracy": 0.7,
+          "accuracy_drop": 0.06000000000000005,
+          "robustness_score": 0.9210526315789473
+        },
+        "svm_rbf": {
+          "clean_accuracy": 0.76,
+          "noisy_accuracy": 0.7266666666666667,
+          "accuracy_drop": 0.033333333333333326,
+          "robustness_score": 0.956140350877193
+        },
+        "random_forest": {
+          "clean_accuracy": 0.7866666666666666,
+          "noisy_accuracy": 0.8133333333333334,
+          "accuracy_drop": -0.026666666666666727,
+          "robustness_score": 1.033898305084746
+        },
+        "gradient_boosting": {
+          "clean_accuracy": 0.8066666666666666,
+          "noisy_accuracy": 0.7733333333333333,
+          "accuracy_drop": 0.033333333333333326,
+          "robustness_score": 0.9586776859504132
+        }
+      },
+      "best_model": "random_forest",
+      "best_metrics": {
+        "clean_accuracy": 0.7866666666666666,
+        "noisy_accuracy": 0.8133333333333334,
+        "accuracy_drop": -0.026666666666666727,
+        "robustness_score": 1.033898305084746
+      }
+    },
+    "dual_loss_stability + standard_readout": {
+      "objective_mode": "dual_loss_stability",
+      "readout_training_mode": "standard_readout",
+      "architecture": "linear",
+      "noise_type": "depolarizing",
+      "train_noise": 0.05,
+      "eval_noise": 0.05,
+      "epochs": 12,
+      "shots": 1024,
+      "feature_dimension": 28,
+      "readout_results": {
+        "logistic_regression": {
+          "clean_accuracy": 0.6466666666666666,
+          "noisy_accuracy": 0.7266666666666667,
+          "accuracy_drop": -0.08000000000000007,
+          "robustness_score": 1.1237113402061858
+        },
+        "svm_rbf": {
+          "clean_accuracy": 0.7266666666666667,
+          "noisy_accuracy": 0.7333333333333333,
+          "accuracy_drop": -0.006666666666666599,
+          "robustness_score": 1.0091743119266054
+        },
+        "random_forest": {
+          "clean_accuracy": 0.8133333333333334,
+          "noisy_accuracy": 0.68,
+          "accuracy_drop": 0.1333333333333333,
+          "robustness_score": 0.8360655737704918
+        },
+        "gradient_boosting": {
+          "clean_accuracy": 0.74,
+          "noisy_accuracy": 0.6533333333333333,
+          "accuracy_drop": 0.08666666666666667,
+          "robustness_score": 0.8828828828828829
+        }
+      },
+      "best_model": "svm_rbf",
+      "best_metrics": {
+        "clean_accuracy": 0.7266666666666667,
+        "noisy_accuracy": 0.7333333333333333,
+        "accuracy_drop": -0.006666666666666599,
+        "robustness_score": 1.0091743119266054
+      }
+    },
+    "dual_loss_stability + noise_augmented_readout": {
+      "objective_mode": "dual_loss_stability",
+      "readout_training_mode": "noise_augmented_readout",
+      "architecture": "linear",
+      "noise_type": "depolarizing",
+      "train_noise": 0.05,
+      "eval_noise": 0.05,
+      "epochs": 12,
+      "shots": 1024,
+      "feature_dimension": 28,
+      "readout_results": {
+        "logistic_regression": {
+          "clean_accuracy": 0.8133333333333334,
+          "noisy_accuracy": 0.7933333333333333,
+          "accuracy_drop": 0.020000000000000018,
+          "robustness_score": 0.9754098360655737
+        },
+        "svm_rbf": {
+          "clean_accuracy": 0.8,
+          "noisy_accuracy": 0.78,
+          "accuracy_drop": 0.020000000000000018,
+          "robustness_score": 0.975
+        },
+        "random_forest": {
+          "clean_accuracy": 0.8266666666666667,
+          "noisy_accuracy": 0.8133333333333334,
+          "accuracy_drop": 0.013333333333333308,
+          "robustness_score": 0.9838709677419355
+        },
+        "gradient_boosting": {
+          "clean_accuracy": 0.8,
+          "noisy_accuracy": 0.8066666666666666,
+          "accuracy_drop": -0.006666666666666599,
+          "robustness_score": 1.0083333333333333
+        }
+      },
+      "best_model": "random_forest",
+      "best_metrics": {
+        "clean_accuracy": 0.8266666666666667,
+        "noisy_accuracy": 0.8133333333333334,
+        "accuracy_drop": 0.013333333333333308,
+        "robustness_score": 0.9838709677419355
+      }
+    }
+  },
+  "best_configuration": {
+    "label": "standard_loss + noise_augmented_readout",
+    "objective_mode": "standard_loss",
+    "readout_training_mode": "noise_augmented_readout",
+    "architecture": "linear",
+    "noise_type": "depolarizing",
+    "train_noise": 0.05,
+    "eval_noise": 0.05,
+    "epochs": 12,
+    "shots": 1024,
+    "feature_dimension": 28,
+    "readout_results": {
+      "logistic_regression": {
+        "clean_accuracy": 0.76,
+        "noisy_accuracy": 0.7,
+        "accuracy_drop": 0.06000000000000005,
+        "robustness_score": 0.9210526315789473
+      },
+      "svm_rbf": {
+        "clean_accuracy": 0.76,
+        "noisy_accuracy": 0.7266666666666667,
+        "accuracy_drop": 0.033333333333333326,
+        "robustness_score": 0.956140350877193
+      },
+      "random_forest": {
+        "clean_accuracy": 0.7866666666666666,
+        "noisy_accuracy": 0.8133333333333334,
+        "accuracy_drop": -0.026666666666666727,
+        "robustness_score": 1.033898305084746
+      },
+      "gradient_boosting": {
+        "clean_accuracy": 0.8066666666666666,
+        "noisy_accuracy": 0.7733333333333333,
+        "accuracy_drop": 0.033333333333333326,
+        "robustness_score": 0.9586776859504132
+      }
+    },
+    "best_model": "random_forest",
+    "best_metrics": {
+      "clean_accuracy": 0.7866666666666666,
+      "noisy_accuracy": 0.8133333333333334,
+      "accuracy_drop": -0.026666666666666727,
+      "robustness_score": 1.033898305084746
+    }
+  },
+  "thesis_contribution": "This experiment directly tests whether robustness gains come from noise-aware quantum training, noise-augmented readout training, or their combination."
+}
