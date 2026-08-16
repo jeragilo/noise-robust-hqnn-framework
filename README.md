@@ -1,120 +1,85 @@
-# Noise-Robust Hybrid Quantum Neural Networks Framework
+# Noise-Robust Hybrid Quantum Neural Networks
 
-This repository contains the experimental codebase for my Master’s thesis:
+**Master’s thesis research framework for reliable hybrid quantum–classical learning under NISQ noise.**
+
+This repository contains the experimental codebase developed for my M.S. Computer Science thesis at East Carolina University:
 
 **Noise-Robust Hybrid Quantum Neural Networks: A Framework for Scalable Quantum AI in the NISQ Era**
 
-The project investigates the reliability, robustness, and practical limitations of hybrid quantum–classical neural networks under simulated NISQ-era noise.
+The project studies how **noise-aware training, measurement design, entanglement architecture, and learned classical readout** affect the reliability of hybrid quantum neural networks (HQNNs). It is organized as a reusable benchmarking and optimization framework rather than a collection of isolated demonstrations.
 
-This repository is structured as a reusable benchmarking and optimization framework, not only as a collection of independent demos.
+## Research Highlights
 
----
+| Experiment | Clean Accuracy | Noisy Accuracy |
+|---|---:|---:|
+| Fixed parity readout | 0.3444 | 0.3667 |
+| Learned logistic readout | 0.8333 | 0.8222 |
+| Multi-observable Random Forest | 0.8733 | 0.8533 |
+| Best architecture search: Linear + RF | 0.8933 | 0.8867 |
+| Stability-regularized multi-observable RF* | 0.9600 | 0.9600 |
 
-## Flagship Result: Stability-Regularized Multi-Observable HQNN
+\*Best observed configuration in the reported experiment. Results are experimental and configuration-dependent; they are not claims of general quantum advantage.
 
-The strongest configuration combines:
+The central empirical finding is that HQNN performance depends strongly on the **full hybrid pipeline**, not only the parameterized quantum circuit. Preserving richer measurement information and learning the classical decision rule produced substantially stronger evaluated performance than compressing circuit outputs through a fixed parity rule.
 
-- Stability-regularized noise-aware training
-- Multi-observable quantum feature extraction
-- Linear HQNN architecture
-- Random Forest learned classical readout
+## Multi-Channel Noise Validation
 
-Result under depolarizing noise:
+The flagship configuration was evaluated at `eval_noise = 0.05` across four simulated NISQ-relevant channels:
 
-| Metric | Value |
-|---|---:|
-| Clean accuracy | 0.9600 |
-| Noisy accuracy | 0.9600 |
-| Accuracy drop | 0.0000 |
-| Robustness score | 1.0000 |
-| Gain over random parity baseline | +0.5067 |
-
-This supports the main thesis claim that HQNN robustness improves when noise awareness is embedded into the optimization process and richer quantum measurement information is preserved through learned hybrid readouts.
-### Multi-Channel Noise Validation
-
-The flagship HQNN configuration was also validated across four NISQ-relevant noise channels at eval_noise = 0.05.
-
-| Noise Channel | RF Clean Accuracy | RF Noisy Accuracy | Accuracy Drop | Robustness Score |
+| Noise Channel | Clean Accuracy | Noisy Accuracy | Accuracy Drop | Robustness Score |
 |---|---:|---:|---:|---:|
 | Depolarizing | 0.9600 | 0.9467 | 0.0133 | 0.9861 |
 | Bit flip | 0.9467 | 0.9467 | 0.0000 | 1.0000 |
 | Phase flip | 0.9533 | 0.9533 | 0.0000 | 1.0000 |
 | Amplitude damping | 0.9600 | 0.9267 | 0.0333 | 0.9653 |
 
-This strengthens the thesis claim by showing that the flagship HQNN method generalizes beyond a single depolarizing-noise condition.
----
+These experiments test whether the selected hybrid design remains stable across more than one simulated noise condition.
 
-## Main Thesis Claim
+## Main Contributions
 
-Naive HQNN models with fixed parity readout can perform poorly because they compress quantum measurement information into a single decision signal. This framework shows that HQNN performance can be substantially improved by combining:
+### Learned classical readout
 
-1. Noise-aware training objectives  
-2. Stability regularization  
-3. Multi-observable quantum feature extraction  
-4. Architecture search  
-5. Learned classical readouts  
-6. Repeated-trial and statistical validation  
+Instead of reducing quantum measurements immediately to a fixed parity decision, the framework uses the circuit measurement distribution as a quantum-derived feature representation for a learned classical model.
 
-The framework moves the thesis from simple HQNN benchmarking toward a reusable method for discovering noise-robust hybrid quantum-classical learning configurations.
+### Multi-observable quantum features
 
----
+The framework extracts a 31-dimensional feature representation containing:
 
-## Key Algorithmic Contributions
+- full bitstring probabilities
+- single-qubit Z expectations
+- pairwise ZZ correlations
+- global parity expectation
+- probability-distribution statistics
 
-### 1. Learned Classical Readout HQNN
+### Entanglement architecture search
 
-Instead of using a fixed parity threshold, the circuit measurement distribution is used as a quantum feature representation for a learned classical readout.
+HQNN configurations are compared across:
 
-Best observed learned-readout result:
+- no entanglement
+- linear entanglement
+- ring entanglement
+- full entanglement
 
-| Method | Clean Accuracy | Noisy Accuracy |
-|---|---:|---:|
-| Fixed parity readout | 0.3444 | 0.3667 |
-| Learned logistic readout | 0.8333 | 0.8222 |
+The best reported architecture-search configuration used **linear entanglement with a Random Forest readout**, reaching 0.8933 clean and 0.8867 noisy accuracy in the evaluated experiment.
 
----
+### Noise-aware optimization
 
-### 2. Multi-Observable HQNN Readout
+Implemented training objectives include:
 
-The framework extracts richer quantum-derived features:
+- standard clean-loss training
+- noise-aware training
+- dual-loss training
+- stability-regularized training
 
-- Full bitstring probabilities
-- Single-qubit Z expectations
-- Pairwise ZZ correlations
-- Global parity expectation
-- Probability-distribution statistics
+The objective is to search for parameter settings that remain useful under simulated perturbations rather than optimizing exclusively for ideal circuit behavior.
 
-This produced a 31-dimensional quantum-derived feature vector.
+### Repeated-trial and statistical validation
 
-Best observed multi-observable result:
+The framework includes repeated experiments and statistical reporting so that conclusions are not based solely on a single stochastic training run.
 
-| Method | Clean Accuracy | Noisy Accuracy |
-|---|---:|---:|
-| Multi-observable Logistic Regression | 0.8000 | 0.8200 |
-| Multi-observable Random Forest | 0.8733 | 0.8533 |
+## Noise Sweep
 
----
-
-### 3. Architecture Search for HQNN Robustness
-
-The framework compares different entanglement structures:
-
-- No entanglement
-- Linear entanglement
-- Ring entanglement
-- Full entanglement
-
-Best architecture-search result:
-
-| Architecture | Readout | Clean Accuracy | Noisy Accuracy |
-|---|---|---:|---:|
-| Linear | Random Forest | 0.8933 | 0.8867 |
-
----
-
-### 4. Best-Architecture Noise Sweep
-
-The optimized linear HQNN configuration was tested across increasing depolarizing noise levels.
+The optimized linear HQNN configuration was evaluated across increasing depolarizing-noise levels:
 
 | Noise Level | Accuracy |
 |---:|---:|
@@ -125,67 +90,32 @@ The optimized linear HQNN configuration was tested across increasing depolarizin
 | 0.07 | 0.8200 |
 | 0.10 | 0.8133 |
 
-This shows that the optimized configuration remains stable across moderate noise levels.
+Within this experiment, the selected configuration remained stable through moderate simulated noise before degrading at higher levels.
 
----
+## Technology Stack
 
-### 5. Dual-Loss and Stability-Regularized HQNN Training
+**Quantum:** Qiskit · Qiskit Aer · Qiskit Machine Learning · Cirq · PennyLane  
+**Machine Learning:** scikit-learn  
+**Scientific Computing:** NumPy · SciPy · Pandas  
+**Analysis & Visualization:** Matplotlib
 
-The framework implements noise-aware objective functions that combine clean behavior, noisy behavior, and stability under perturbation.
+## Framework Capabilities
 
-Training objectives include:
+### Datasets
 
-- Standard clean-loss training
-- Noise-aware training
-- Dual-loss training
-- Stability-regularized training
-
-Best observed result:
-
-| Training Mode | Readout | Clean Accuracy | Noisy Accuracy | Accuracy Drop |
-|---|---|---:|---:|---:|
-| Stability-regularized | Multi-observable Random Forest | 0.9600 | 0.9600 | 0.0000 |
-
----
-
-## Framework Overview
-
-The framework uses:
-
-- Qiskit
-- Qiskit Aer
-- Qiskit Machine Learning
-- Cirq
-- PennyLane
-- scikit-learn
-- NumPy
-- Matplotlib
-
-The contribution of this project is the reusable evaluation, optimization, reporting, and robustness-analysis layer built around those libraries.
-
----
-
-## Framework Features
-
-### Standardized Dataset Handling
-
-- Synthetic classification data
+- synthetic classification data
 - Iris
 - Wisconsin Diagnostic Breast Cancer dataset
-- Quantum-compatible low-dimensional preprocessing
+- low-dimensional preprocessing compatible with the evaluated quantum circuits
 
-### Noise-Analysis Toolbox
+### Simulated noise models
 
-Supported noise models:
+- depolarizing
+- bit flip
+- phase flip
+- amplitude damping
 
-- Depolarizing noise
-- Bit-flip noise
-- Phase-flip noise
-- Amplitude damping
-
-### Robustness Metrics
-
-The framework includes reusable metrics:
+### Robustness metrics
 
 - `accuracy_drop`
 - `robustness_score`
@@ -193,34 +123,28 @@ The framework includes reusable metrics:
 - `training_instability`
 - `cross_framework_deviation`
 
-### Benchmark Pipelines
+### Experimental pipelines
 
-The framework includes pipelines for:
+- hybrid vs. classical comparison
+- noise robustness evaluation
+- cross-framework validation
+- learned-readout HQNN evaluation
+- multi-observable HQNN evaluation
+- architecture search
+- best-architecture noise sweep
+- repeated-trial validation
+- statistical validation
+- dual-loss noise-aware training
+- stability-regularized multi-observable HQNN
 
-- Hybrid vs classical comparison
-- Noise robustness
-- Cross-framework validation
-- Learned-readout HQNN evaluation
-- Multi-observable HQNN evaluation
-- Architecture search
-- Best-architecture noise sweep
-- Repeated-trial validation
-- Statistical validation
-- Dual-loss noise-aware training
-- Stability-regularized multi-observable HQNN
-
-### Standardized Outputs
-
-The framework generates:
+### Outputs
 
 - JSON summaries
 - CSV summaries
-- Accuracy plots
-- Noise curves
-- Heatmaps
-- Statistical validation reports
-
----
+- accuracy plots
+- noise curves
+- heatmaps
+- statistical validation reports
 
 ## Repository Structure
 
@@ -259,86 +183,56 @@ env/
   requirements.txt
 
 run_framework.py
-Running the Framework
+```
 
-Run the full framework:
+## Quick Start
 
+Create the environment:
+
+```bash
+conda create -n hqnn python=3.11 -y
+conda activate hqnn
+pip install -r env/requirements.txt
+```
+
+Run the framework from the repository root:
+
+```bash
 python run_framework.py
+```
 
-Run individual framework pipelines:
+Run an individual experiment:
 
-PYTHONPATH=. python pipelines/main_hybrid_vs_classical.py
-PYTHONPATH=. python pipelines/main_noise_robustness.py
-PYTHONPATH=. python pipelines/main_cross_framework_validation.py
-PYTHONPATH=. python pipelines/main_full_benchmark_summary.py
-PYTHONPATH=. python pipelines/main_framework_capabilities_report.py
-
-Run advanced HQNN optimization pipelines:
-
+```bash
 PYTHONPATH=. python pipelines/main_learned_readout_hqnn.py
 PYTHONPATH=. python pipelines/main_multi_observable_hqnn.py
 PYTHONPATH=. python pipelines/main_architecture_search_hqnn.py
 PYTHONPATH=. python pipelines/main_best_architecture_noise_sweep.py
-PYTHONPATH=. python pipelines/main_best_architecture_repeated_trials.py
 PYTHONPATH=. python pipelines/main_statistical_validation.py
-PYTHONPATH=. python pipelines/main_dual_loss_noise_aware_hqnn.py
-PYTHONPATH=. python pipelines/main_dual_loss_multi_observable_hqnn.py
-Demonstration Ecosystem
+```
 
-The project includes a 13-demo experimental ecosystem across Qiskit, Cirq, and PennyLane.
+## Demonstration Ecosystem
 
-Core Demos
-HQNN Toy Classifier
-VQE Energy Minimization
-QAOA MaxCut
-QSVM Anomaly Detection
-Noise-Robust HQNN
-Cross-Framework Noise Benchmark
-Cross-Platform Parity Consistency
-HQNN Training Loop with SPSA
-Industry-Inspired Demos
-Medical Risk Classification
-Energy Grid Optimization
-Cybersecurity Anomaly Detection
-HQNN Explainability
-Cross-Noise Robustness Heatmap
+The repository also contains 13 experimental demonstrations across Qiskit, Cirq, and PennyLane, including:
 
-Run an individual demo from the repository root:
+**Core:** HQNN classification, VQE, QAOA, QSVM anomaly detection, noise-robust HQNN evaluation, cross-framework noise benchmarking, cross-platform parity consistency, and SPSA training.
 
-PYTHONPATH=. python demos/core/demo05_hqnn_noise_robust_qiskit.py
+**Application-oriented:** medical-risk classification, energy-grid optimization, cybersecurity anomaly detection, HQNN explainability, and cross-noise robustness analysis.
 
-Cybersecurity demo:
+These demonstrations complement the primary HQNN research pipelines; they are not presented as independent claims of practical quantum advantage.
 
-PYTHONPATH=. python demos/industry/demo11_cyber_anomaly_qiskit.py
-Environment Setup
-conda create -n hqnn python=3.11 -y
-conda activate hqnn
-pip install -r env/requirements.txt
-Thesis-Relevant Interpretation
+## Research Interpretation
 
-The results suggest that HQNN performance is not determined only by the quantum circuit itself. It depends strongly on the full hybrid pipeline:
+The experiments support a hybrid-first interpretation of near-term quantum machine learning: circuit design matters, but so do the interfaces around the circuit. In the evaluated configurations, robustness was strongly influenced by how measurement information was retained, how the classical readout used quantum-derived features, how entanglement was structured, and whether noise was represented during optimization.
 
-how noise is inserted into training,
-how measurement information is extracted,
-how the classical readout interprets quantum features,
-how entanglement architecture is selected,
-and how robustness is validated statistically.
+The repository therefore treats the quantum circuit as one component of a larger learning system and evaluates robustness at the **pipeline level**.
 
-The strongest result shows that a stability-regularized, multi-observable, learned-readout HQNN can preserve performance under simulated depolarizing noise, achieving 0.9600 clean accuracy and 0.9600 noisy accuracy in the reported experiment.
+## Reproducibility Notes
 
-Status
+Results in this repository are experimental outputs from specific datasets, random seeds, circuit configurations, shot counts, noise settings, and classical readout models. Reported values should be interpreted in that experimental context rather than as universal performance guarantees or evidence of general quantum advantage.
 
-The repository currently includes:
+## Author
 
-Framework layer
-Pipeline layer
-Core demos
-Industry demos
-Benchmark outputs
-Advanced HQNN optimization pipelines
-Statistical validation outputs
-Thesis-ready figures and JSON summaries
-Contact
-
-GitHub: https://github.com/jeragilo/
-
+**Jesús Gil**  
+M.S. Computer Science, East Carolina University  
+[GitHub](https://github.com/jeragilo) · [LinkedIn](https://www.linkedin.com/in/jesusrgil)
