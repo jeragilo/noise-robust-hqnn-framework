@@ -19,12 +19,14 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-          cache-dependency-path: env/requirements.txt
+          cache-dependency-path: |
+            env/requirements.txt
+            env/requirements-dev.txt
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r env/requirements.txt
+          pip install -r env/requirements-dev.txt
 
       - name: Run unit tests
         run: pytest -q tests
