@@ -13,4 +13,3 @@ pennylane
 cirq
 qiskit-machine-learning
 mthree
-pytest
