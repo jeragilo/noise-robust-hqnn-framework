@@ -172,6 +172,10 @@ pipelines/
   main_dual_loss_noise_aware_hqnn.py
   main_dual_loss_multi_observable_hqnn.py
 
+tests/
+  test_datasets.py
+  test_robustness_metrics.py
+
 demos/
   core/
   industry/
@@ -181,7 +185,15 @@ results/
 
 env/
   requirements.txt
+  requirements-dev.txt
 
+docs/
+  REPRODUCIBILITY.md
+
+.github/workflows/
+  tests.yml
+
+CITATION.cff
 run_framework.py
 ```
 
@@ -210,6 +222,32 @@ PYTHONPATH=. python pipelines/main_architecture_search_hqnn.py
 PYTHONPATH=. python pipelines/main_best_architecture_noise_sweep.py
 PYTHONPATH=. python pipelines/main_statistical_validation.py
 ```
+
+## Testing
+
+The repository includes lightweight deterministic tests for core robustness metrics and dataset preprocessing. These tests are intentionally separated from long-running quantum optimization experiments so that code-level verification remains fast.
+
+Install the development dependencies and run the test suite:
+
+```bash
+pip install -r env/requirements-dev.txt
+pytest -q tests
+```
+
+GitHub Actions is configured to run the same test suite on pushes and pull requests targeting `main`.
+
+## Reproducibility
+
+Detailed reproduction instructions are available in [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md), including environment setup, testing, Docker usage, individual pipeline execution, and guidance for interpreting stochastic experimental results.
+
+The repository separates research/runtime dependencies from development/test dependencies:
+
+- `env/requirements.txt` — research and runtime environment
+- `env/requirements-dev.txt` — runtime environment plus test tooling
+
+## Citation
+
+Machine-readable citation metadata is provided in [`CITATION.cff`](CITATION.cff). If this software is used in research, please cite the repository and the associated thesis or publication when available.
 
 ## Demonstration Ecosystem
 
