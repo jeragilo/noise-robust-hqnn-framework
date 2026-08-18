@@ -1,11 +1,8 @@
 """
 Robustness metrics for the Noise-Robust HQNN framework.
 
-This module provides quantitative measures used to support
-thesis claims with numerical evidence.
-
-These metrics are NOT provided as a unified system in
-Qiskit Machine Learning or PennyLane — this is part of your framework contribution.
+This module provides a unified set of quantitative measures for evaluating
+HQNN performance degradation, stability, and consistency across experiments.
 """
 
 from __future__ import annotations
@@ -39,7 +36,7 @@ def degradation_slope(noise_levels: Sequence[float], accuracies: Sequence[float]
     """
     Linear slope of accuracy vs noise.
 
-    Negative slope = performance drops with noise
+    Negative slope = performance drops with noise.
     """
     noise_levels = np.asarray(noise_levels)
     accuracies = np.asarray(accuracies)
@@ -55,10 +52,7 @@ def training_instability(values: Sequence[float]) -> float:
     """
     Standard deviation across runs or epochs.
 
-    Measures sensitivity to:
-    - initialization
-    - noise
-    - optimizer randomness
+    Measures sensitivity to initialization, noise, and optimizer randomness.
     """
     values = np.asarray(values)
     return float(np.std(values))
@@ -66,10 +60,10 @@ def training_instability(values: Sequence[float]) -> float:
 
 def cross_framework_deviation(values: Sequence[float]) -> float:
     """
-    Maximum difference across frameworks.
+    Maximum difference across framework-specific measurements.
 
     Example:
-        Qiskit vs Cirq vs PennyLane
+        Qiskit vs Cirq vs PennyLane.
     """
     values = np.asarray(values)
     return float(np.max(values) - np.min(values))
@@ -81,9 +75,7 @@ def summarize_noise_results(
     noisy_accuracies: Sequence[float],
 ) -> Dict[str, float]:
     """
-    Creates a summary of noise robustness.
-
-    This is VERY important for your thesis tables.
+    Return aggregate robustness statistics for experimental reporting.
     """
     noisy_accuracies = np.asarray(noisy_accuracies)
 
