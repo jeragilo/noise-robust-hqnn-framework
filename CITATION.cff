@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software in research, please cite this repository and the associated thesis or publication when available."
+title: "Noise-Robust Hybrid Quantum Neural Networks"
+type: software
+authors:
+  - family-names: "Gil"
+    given-names: "Jesús"
+    orcid: ""
+repository-code: "https://github.com/jeragilo/noise-robust-hqnn-framework"
+abstract: >-
+  Research software for evaluating and improving hybrid quantum-classical
+  neural networks under simulated NISQ noise, including learned readout,
+  multi-observable features, architecture search, noise-aware objectives,
+  repeated trials, and robustness metrics.
+keywords:
+  - quantum machine learning
+  - hybrid quantum neural networks
+  - NISQ
+  - quantum noise
+  - robustness
+  - Qiskit
+  - PennyLane
+  - Cirq
+license: ""
