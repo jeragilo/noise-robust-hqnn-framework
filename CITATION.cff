@@ -5,7 +5,6 @@ type: software
 authors:
   - family-names: "Gil"
     given-names: "Jesús"
-    orcid: ""
 repository-code: "https://github.com/jeragilo/noise-robust-hqnn-framework"
 abstract: >-
   Research software for evaluating and improving hybrid quantum-classical
@@ -21,4 +20,3 @@ keywords:
   - Qiskit
   - PennyLane
   - Cirq
-license: ""
