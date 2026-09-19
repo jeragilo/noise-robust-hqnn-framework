@@ -100,7 +100,6 @@ METADATA_PATH = (
     / "main_readout_study_metadata.json"
 )
 
-
 # =============================================================================
 # LOCKED EXPERIMENTAL PROTOCOL
 # =============================================================================
@@ -739,21 +738,20 @@ def summarize_results(
             else 0.0
         )
 
-            1.96 * accuracy_se
-)if n > 1:
-    critical_t = float(
-        stats.t.ppf(
-            0.975,
-            df=n - 1,
-        )
-    )
+        if n > 1:
+            critical_t = float(
+                stats.t.ppf(
+                    0.975,
+                    df=n - 1,
+                )
+            )
 
-    ci_margin = (
-        critical_t
-        * accuracy_se
-    )
-else:
-    ci_margin = 0.0
+            ci_margin = (
+                critical_t
+                * accuracy_se
+            )
+        else:
+            ci_margin = 0.0
 
         summary.append(
             {
