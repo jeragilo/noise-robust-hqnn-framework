@@ -1295,7 +1295,7 @@ def run_pipeline() -> None:
 
             condition_start = time.time()
 
-            # -------------------------------------------------------------
+            # Continuously update long-form results.            # -------------------------------------------------------------
             # Step 1:
             # Generate quantum measurements if they do not already exist.
             # -------------------------------------------------------------
@@ -1348,12 +1348,6 @@ def run_pipeline() -> None:
                 checkpoint
             )
 
-            current_rows = (
-                add_robustness_metrics(
-                    current_rows
-                )
-            )
-
             write_long_form(
                 current_rows
             )
@@ -1362,7 +1356,6 @@ def run_pipeline() -> None:
                 f"\nCheckpoint saved | "
                 f"elapsed={elapsed / 60:.2f} min"
             )
-
     # =========================================================================
     # FINALIZE
     # =========================================================================
