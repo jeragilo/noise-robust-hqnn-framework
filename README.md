@@ -8,6 +8,14 @@ This repository contains the experimental codebase developed for my M.S. Compute
 
 The project studies how **noise-aware training, measurement design, entanglement architecture, and learned classical readout** affect the reliability of hybrid quantum neural networks (HQNNs). It is organized as a reusable benchmarking and optimization framework rather than a collection of isolated demonstrations.
 
+## Related Manuscript: Beyond Parity
+
+The submitted manuscript *Beyond Parity: Measurement Representation and Decoder Capacity in Noise-Robust Hybrid Quantum Neural Networks* (Jesus Gil and David Hart; submitted to *Quantum Machine Intelligence*) reports a separate controlled readout-ablation study and exploratory IBM Marrakesh validation.
+
+**[Read the experimental methodology, hardware results, statistical interpretation, and evidence-availability notes](BEYOND_PARITY_EXPERIMENTS.md).**
+
+The manuscript's 1,500 circuit executions and reported hardware accuracies should not be conflated with this repository's earlier thesis-specific hardware-validation outputs. The linked guide documents what is reported and what study-specific artifacts are not yet publicly available.
+
 ## Research Highlights
 
 | Experiment | Clean Accuracy | Noisy Accuracy |
